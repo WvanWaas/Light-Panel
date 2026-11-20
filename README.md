@@ -70,4 +70,4 @@ Na wijzigingen aan broncode: `docker compose up -d --build`. Bij een herstart va
 
 Light Panel is een zelfstandige template met een nieuwe Git-geschiedenis. Gebruik op GitHub **Use this template → Create a new repository** om je eigen versie te beginnen. Je eigen configuratie en foto’s blijven lokaal en worden niet meegecommit.
 
-Light Panel valt onder de [MIT-licentie](LICENSE). Zie [NOTICE](NOTICE.md) voor meegeleverde bronnen van derden.
+Light Panel valt vanaf deze versie onder de [GNU GPLv3](LICENSE) (GPL-3.0-only). Bij verspreiding van aangepaste versies moet de bijbehorende broncode onder GPLv3 beschikbaar blijven. Zie [NOTICE](NOTICE.md) voor meegeleverde bronnen van derden.
