@@ -6,6 +6,16 @@
 
 ![Light Panel-functieposter: twaalf onderwerpen van foto’s en energie tot klimaat, meldingen en fotolijstbediening](docs/functieposter.nl.svg)
 
+## Inspiratie: de oorspronkelijke installatie
+
+Deze referentiebeelden tonen de oorspronkelijke installatie van de maker, met het eigen logo, de foto en de meetwaarden van dat moment. Ze laten zien hoe een ingericht paneel eruit kan zien. De startversie opent met lege koppelingen.
+
+| Hoofdscherm | Tibber-energiedetail |
+| --- | --- |
+| <a href="docs/frame-full.jpg"><img src="docs/frame-full.jpg" alt="Oorspronkelijk fotolijstdashboard met kattenfoto, energie- en klimaatkaarten" width="350"></a> | <a href="docs/frame-tibber.jpg"><img src="docs/frame-tibber.jpg" alt="Oorspronkelijk Tibber-detail met kosten, zonverwachting, stroomprijzen en batterijplanning" width="350"></a> |
+
+Klik op een afbeelding om deze op volledig formaat te openen.
+
 ## Alles wat Light Panel kan
 
 | | Onderdeel | Mogelijkheden met je eigen koppelingen |
@@ -28,7 +38,7 @@
 [Open de functieposter afzonderlijk](docs/functieposter.nl.svg) · [Maak je eigen versie met AI](docs/AI-START.nl.md)
 
 
-Deze startversie bevat geen persoonlijke foto’s, huisplattegrond, logo, accountgegevens of geschiedenis van het oorspronkelijke project. Koppelingen zijn optioneel en starten leeg. Zonder Home Assistant zie je nog geen eigen meetwaarden; dit is een startscherm, geen gevulde demo.
+De werkende startversie heeft een lege fotobibliotheek, algemene vormgeving en geen persoonlijke huisplattegrond, accountgegevens of geschiedenis van het oorspronkelijke project. De referentiebeelden hierboven zijn documentatievoorbeelden. Koppelingen zijn optioneel en starten leeg. Zonder Home Assistant zie je nog geen eigen meetwaarden; dit is een startscherm, geen gevulde demo.
 
 ## Beginnen in vijf minuten
 

@@ -6,6 +6,16 @@
 
 ![Light Panel feature poster: photos, energy, climate, notifications and frame controls](docs/functieposter.svg)
 
+## Inspiration: the original installation
+
+These reference screenshots show the creator’s original installation, including its branding, photo and readings at the time. They illustrate what a configured panel can look like; the runnable starter opens with empty integrations.
+
+| Home screen | Tibber energy detail |
+| --- | --- |
+| <a href="docs/frame-full.jpg"><img src="docs/frame-full.jpg" alt="Original photo frame dashboard with a cat photo, energy and climate cards" width="350"></a> | <a href="docs/frame-tibber.jpg"><img src="docs/frame-tibber.jpg" alt="Original Tibber detail with costs, solar forecast, electricity prices and battery planning" width="350"></a> |
+
+Click an image to open it at full size.
+
 ## What can it do?
 
 | | Area | Features with your own integrations |
@@ -23,7 +33,7 @@
 | 📷 | Cameras, news & websites | Refreshed camera snapshots, garage picture-in-picture, news and availability checks for your websites. Snapshots are not a video stream. |
 | 🖥️ | Remote frame controls | Screen, LEDs, screenshots, sound, full-screen messages and webhooks for connected hardware frames. Hardware controls require a compatible device and Android app. |
 
-Features depend on your own sensors, settings and services. The starter includes no personal photos, floor plan, branding, credentials or original private repository history. Integrations start empty; missing values are not populated with invented live data. Some interface text and technical routes still use Dutch or the name Frameo.
+Features depend on your own sensors, settings and services. The runnable starter has an empty photo library, generic branding and no personal floor plan, credentials or original private repository history. The reference screenshots above are documentation assets. Integrations start empty; missing values are not populated with invented live data. Some interface text and technical routes still use Dutch or the name Frameo.
 
 ## Quick start
 
