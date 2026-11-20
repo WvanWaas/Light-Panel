@@ -1,0 +1,42 @@
+{
+  "timezone": "Europe/Amsterdam",
+  "battery": "",
+  "power": "",
+  "solar": "",
+  "flight": "",
+  "trash": "",
+  "sun": "sun.sun",
+  "weather": "",
+  "weather_fallbacks": [],
+  "sun_screen_rotation": 0,
+  "battery_power": "",
+  "battery_charge_positive": true,
+  "battery_power_deadband": 20,
+  "lights": [],
+  "light_groups": {},
+  "cameras": {},
+  "actions": {},
+  "climate": {},
+  "energy": {},
+  "thermostats": {},
+  "ventilation_entity": "",
+  "calendar_ids": [],
+  "countdown_calendar_ids": [],
+  "dashboard": {},
+  "notifications": {},
+  "battery_details": {},
+  "power_display": {
+    "heavy": [],
+    "minor": []
+  },
+  "floorplan": {
+    "base": "empty.svg",
+    "floors": {
+      "down": []
+    }
+  },
+  "solar_forecast": {},
+  "feed_notifications": {},
+  "ticker": {},
+  "websites": []
+}

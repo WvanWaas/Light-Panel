@@ -1,0 +1,12 @@
+.git
+.env
+.env.*
+!.env.example
+config/
+photos/
+notification-history/
+__pycache__/
+**/__pycache__/
+*.pyc
+.DS_Store
+android/

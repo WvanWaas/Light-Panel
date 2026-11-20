@@ -1,0 +1,20 @@
+services:
+  light-panel:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "${BIND_ADDRESS:-127.0.0.1}:${PORT:-8089}:8080"
+    environment:
+      HA_URL: ${HA_URL:-}
+      HA_TOKEN: ${HA_TOKEN:-}
+      TIBBER_TOKEN: ${TIBBER_TOKEN:-}
+      VRM_SITE_ID: ${VRM_SITE_ID:-}
+      VRM_TOKEN: ${VRM_TOKEN:-}
+      FRAMEO_WEBHOOK_TOKEN: ${FRAMEO_WEBHOOK_TOKEN:-}
+      NOTIFY_SECRET: ${NOTIFY_SECRET:-}
+      CONFIG_PATH: /app/config/settings.json
+      NOTIFICATION_HISTORY_PATH: /app/notification-history/notifications.sqlite3
+    volumes:
+      - ./config:/app/config:ro
+      - ./photos:/app/photos:ro
+      - ./notification-history:/app/notification-history

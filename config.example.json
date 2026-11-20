@@ -1,0 +1,117 @@
+{
+  "timezone": "Europe/Amsterdam",
+  "battery": "sensor.example_battery_soc",
+  "power": "sensor.example_house_power",
+  "solar": "sensor.example_solar_power",
+  "flight": "",
+  "trash": "",
+  "sun": "sun.sun",
+  "weather": "weather.example_home",
+  "weather_fallbacks": [],
+  "sun_screen_rotation": 0,
+  "battery_power": "sensor.example_battery_power",
+  "battery_charge_positive": true,
+  "battery_power_deadband": 20,
+  "lights": [
+    "light.example_living_room"
+  ],
+  "light_groups": {
+    "Woonkamer": "light.example_living_room"
+  },
+  "cameras": {
+    "Voordeur": "camera.example_frontdoor",
+    "Weg": "camera.example_road",
+    "Garagedeur": "camera.example_garage"
+  },
+  "actions": {
+    "fan_timer_10": {
+      "service": "fan.set_preset_mode",
+      "entity_id": "fan.example_ventilation",
+      "data": {
+        "preset_mode": "timer1"
+      }
+    },
+    "fan_timer_20": {
+      "service": "fan.set_preset_mode",
+      "entity_id": "fan.example_ventilation",
+      "data": {
+        "preset_mode": "timer2"
+      }
+    },
+    "fan_timer_30": {
+      "service": "fan.set_preset_mode",
+      "entity_id": "fan.example_ventilation",
+      "data": {
+        "preset_mode": "timer3"
+      }
+    },
+    "fan_off": {
+      "service": "fan.turn_off",
+      "entity_id": "fan.example_ventilation"
+    }
+  },
+  "climate": {},
+  "energy": {
+    "Batterij": "sensor.example_battery_soc",
+    "Batterijvermogen": "sensor.example_battery_power",
+    "Zon nu": "sensor.example_solar_power",
+    "Stroomprijs": "sensor.example_electricity_price",
+    "Net nu": "sensor.example_grid_power"
+  },
+  "thermostats": {
+    "Thermostaat": "climate.example_thermostat",
+    "Airco": "climate.example_airco"
+  },
+  "ventilation_entity": "fan.example_ventilation",
+  "calendar_ids": [],
+  "countdown_calendar_ids": [],
+  "dashboard": {
+    "house_power": "sensor.example_house_power",
+    "heat_pump_power": "sensor.example_heatpump_power",
+    "indoor_temperature": "sensor.example_room_temperature",
+    "indoor_co2": "sensor.example_co2",
+    "hot_water_temperature": "sensor.example_hotwater_temperature",
+    "ventilation": "sensor.example_ventilation_mode",
+    "alarm_entity": "alarm_control_panel.example_alarm",
+    "airco_entities": {
+      "Airco": "climate.example_airco"
+    },
+    "garage_camera": "Weg",
+    "garage_camera_crop": "left",
+    "garage_pip_camera": "Garagedeur",
+    "garage_message_duration": 30
+  },
+  "notifications": {
+    "garage_entity": "binary_sensor.example_garage_open",
+    "handled_entity": "input_boolean.example_waste_handled"
+  },
+  "battery_details": {},
+  "power_display": {
+    "heavy": [],
+    "minor": []
+  },
+  "floorplan": {
+    "base": "empty.svg",
+    "floors": {
+      "down": []
+    }
+  },
+  "solar_forecast": {
+    "today": "sensor.example_solar_today",
+    "remaining": "sensor.example_solar_remaining",
+    "tomorrow": "sensor.example_solar_tomorrow"
+  },
+  "feed_notifications": {
+    "co2_entity": "sensor.example_co2",
+    "co2_threshold": 1500,
+    "co2_delay_seconds": 300,
+    "co2_clear_below": 900,
+    "laundry": {
+      "entity": "sensor.example_washer",
+      "door": "binary_sensor.example_washer_door",
+      "delay_minutes": 30
+    }
+  },
+  "ticker": {},
+  "websites": []
+}

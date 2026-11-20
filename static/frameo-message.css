@@ -1,0 +1,67 @@
+
+.frameo-full-message{position:fixed;top:0;right:0;bottom:0;left:0;width:100%;height:100%;z-index:200000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;border:8px solid var(--message-color);border-radius:0;background:#101820;color:#fff;padding:clamp(22px,6vw,70px);text-align:center;cursor:pointer}
+.frameo-message-mark{display:flex;align-items:center;justify-content:center;width:clamp(128px,24vmin,260px);height:clamp(128px,24vmin,260px);flex:none;border:0;border-radius:0;color:var(--message-color);font:600 58px system-ui}
+.frameo-full-message>strong{font-size:clamp(30px,5vw,64px);line-height:1.15;overflow-wrap:anywhere;white-space:pre-wrap}.frameo-message-text{font-size:clamp(22px,3vw,40px);line-height:1.4;white-space:pre-wrap;overflow-wrap:anywhere;max-width:1000px}.frameo-full-message>small{font-size:15px;color:#b7c6cf}.frameo-full-message{overflow:auto}
+
+.frameo-message-mark svg{display:block;width:100%;height:100%}.frameo-full-message{box-sizing:border-box;font-family:system-ui,sans-serif}.frameo-full-message:hover{background:#101820}
+@media(max-height:500px){.frameo-full-message{gap:12px;padding:18px}.frameo-message-mark{width:80px;height:80px}.frameo-full-message>strong{font-size:28px}.frameo-message-text{font-size:20px}}
+
+.frameo-full-message.has-camera{justify-content:flex-start;padding:0;gap:0;background:#080f15}
+.frameo-camera-view{position:absolute;top:0;right:0;bottom:0;left:0;display:flex;align-items:center;justify-content:center;z-index:0;background:#080f15}
+.frameo-camera-view img{display:block;width:100%;height:100%;object-fit:contain}
+.frameo-camera-heading{position:relative;z-index:1;display:grid;grid-template-columns:60px minmax(0,1fr);gap:4px 16px;width:100%;box-sizing:border-box;text-align:left;align-items:center;padding:24px 28px 48px;background:linear-gradient(#080f15ed,#080f1599 65%,#080f1500)}
+.frameo-camera-heading .frameo-message-mark{grid-row:1/3;width:56px;height:56px}
+.frameo-camera-heading>strong{font-size:clamp(28px,4vw,50px);font-weight:600;line-height:1.2;overflow-wrap:anywhere}
+.frameo-camera-heading .frameo-message-text{font-size:clamp(17px,2.5vw,28px);line-height:1.3}
+.frameo-full-message.has-camera>small{position:absolute;z-index:1;right:0;left:0;bottom:0;padding:18px;background:linear-gradient(transparent,#080f15dd);font-size:15px;text-shadow:0 1px 3px #000}
+.frameo-full-message.has-camera>.frameo-camera-status{bottom:43px;padding:24px 18px 0;background:none;font-size:13px}
+@media(max-width:560px){.frameo-camera-heading{padding:18px 14px 42px;grid-template-columns:46px minmax(0,1fr);gap:4px 12px}.frameo-camera-heading .frameo-message-mark{width:42px;height:42px}}
+
+/* Large appliance pictograms remain recognisable across the room. */
+.frameo-full-message.is-appliance:not(.has-camera) .frameo-message-mark{width:clamp(240px,48vmin,480px);height:clamp(240px,48vmin,480px)}
+.frameo-full-message.is-appliance:not(.has-camera) .frameo-message-mark svg{stroke-width:1.9}
+@media(max-height:500px){.frameo-full-message.is-appliance:not(.has-camera){gap:12px;padding:18px}.frameo-full-message.is-appliance:not(.has-camera) .frameo-message-mark{width:clamp(120px,38vh,180px);height:clamp(120px,38vh,180px)}}
+
+.frameo-full-message.is-alarm:not(.has-camera) .frameo-message-mark{width:clamp(220px,42vmin,420px);height:clamp(220px,42vmin,420px)}
+.frameo-lock-shackle{transform-origin:7px 11px}
+.is-locked .frameo-lock-shackle{transform:rotate(0deg);animation:frameo-lock-close .9s ease-out both}
+.is-unlocked .frameo-lock-shackle{transform:rotate(-32deg);animation:frameo-lock-open .9s ease-out both}
+@keyframes frameo-lock-close{from{transform:rotate(-32deg)}to{transform:rotate(0deg)}}
+@keyframes frameo-lock-open{from{transform:rotate(0deg)}to{transform:rotate(-32deg)}}
+@media(prefers-reduced-motion:reduce){.frameo-lock-shackle{animation:none!important}}
+@media(max-height:500px){.frameo-full-message.is-alarm:not(.has-camera) .frameo-message-mark{width:160px;height:160px}}
+
+/* Brief welcome motion, then a still and readable appliance icon. */
+.frameo-washer-drum{transform-origin:12px 14px;animation:frameo-washer-spin 2.8s cubic-bezier(.2,.6,.25,1) 1 both}
+@keyframes frameo-washer-spin{from{transform:rotate(0deg)}to{transform:rotate(720deg)}}
+.frameo-dishwasher-shine{opacity:0;animation:frameo-dishwasher-shine 1.7s ease-in-out .25s 1 both}
+@keyframes frameo-dishwasher-shine{0%{transform:translateX(0);opacity:0}25%,65%{opacity:.65}100%{transform:translateX(30px);opacity:0}}
+.frameo-dishwasher-sparkle{transform-origin:17px 9px;opacity:0;animation:frameo-dishwasher-sparkle 1.6s ease-in-out .6s 1 both}
+.frameo-dishwasher-sparkle.is-small{transform-origin:7px 16px;animation-delay:1s}
+@keyframes frameo-dishwasher-sparkle{0%,100%{transform:scale(.5);opacity:0}45%{transform:scale(1.15);opacity:1}65%{transform:scale(1);opacity:.8}}
+@media(prefers-reduced-motion:reduce){.frameo-washer-drum,.frameo-dishwasher-shine,.frameo-dishwasher-sparkle{animation:none!important}.frameo-dishwasher-shine,.frameo-dishwasher-sparkle{opacity:0}}
+
+:root[data-motion="off"] .frameo-washer-drum,:root[data-motion="off"] .frameo-dishwasher-shine,:root[data-motion="off"] .frameo-dishwasher-sparkle{animation:none!important}
+:root[data-motion="off"] .frameo-dishwasher-shine,:root[data-motion="off"] .frameo-dishwasher-sparkle{opacity:0}
+
+.frameo-bell-swing{transform-origin:12px 3px;animation:frameo-bell-ring 1.6s ease-in-out 1 both}
+.frameo-bell-waves{opacity:0;animation:frameo-bell-waves 1.6s ease-in-out 1 both}
+@keyframes frameo-bell-ring{0%,100%{transform:rotate(0deg)}12%{transform:rotate(-16deg)}25%{transform:rotate(16deg)}39%{transform:rotate(-12deg)}53%{transform:rotate(12deg)}68%{transform:rotate(-6deg)}82%{transform:rotate(6deg)}}
+@keyframes frameo-bell-waves{0%,100%{opacity:0}15%,65%{opacity:.8}}
+.frameo-garage-shutter{transform:translateY(-12px);animation:frameo-garage-open 3s ease-in-out 1 both}
+@keyframes frameo-garage-open{0%,65%{transform:translateY(0)}32%,100%{transform:translateY(-12px)}}
+@media(prefers-reduced-motion:reduce){.frameo-bell-swing,.frameo-bell-waves,.frameo-garage-shutter{animation:none!important}.frameo-bell-waves{opacity:0}}
+:root[data-motion="off"] .frameo-bell-swing,:root[data-motion="off"] .frameo-bell-waves,:root[data-motion="off"] .frameo-garage-shutter{animation:none!important}
+:root[data-motion="off"] .frameo-bell-waves{opacity:0}
+
+.frameo-full-message.is-climate-message:not(.has-camera) .frameo-message-mark{width:clamp(220px,42vmin,420px);height:clamp(220px,42vmin,420px);position:relative}
+.frameo-message-badge{position:absolute;right:0;bottom:0;background:var(--message-color);color:#101820;border:4px solid #101820;border-radius:18px;padding:8px 16px;font-size:clamp(22px,4vmin,42px);font-weight:700;line-height:1.2;white-space:nowrap}
+.frameo-fan-blades{transform-origin:12px 12px;animation:frameo-fan-start 2.5s ease-out 1 both}.frameo-fan-blades.is-stopping{animation-timing-function:cubic-bezier(.1,.7,.2,1)}
+@keyframes frameo-fan-start{from{transform:rotate(0deg)}to{transform:rotate(720deg)}}
+.frameo-airco-wind{animation:frameo-airco-flow 2.2s ease-in-out 1 both}@keyframes frameo-airco-flow{0%,100%{transform:translateY(0);opacity:1}30%,70%{transform:translateY(1px);opacity:.45}}
+.frameo-camera-left{display:block;position:relative;overflow:hidden;flex:none}.frameo-camera-left img{display:block;width:200%;height:100%;max-width:none;object-fit:fill}
+.frameo-garage-pip{position:fixed;right:14px;bottom:14px;z-index:200010;width:clamp(140px,28vw,250px);padding:0;border:2px solid #ee655c;border-radius:12px;overflow:hidden;box-shadow:0 6px 28px #0009;background:#101820;color:white;cursor:pointer;font:12px system-ui;text-align:left}
+.frameo-garage-pip-view{display:block;position:relative;width:100%;padding-top:56.25%;background:#101820}.frameo-garage-pip-view img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.frameo-garage-pip-label{display:block;padding:7px 9px;line-height:1.3}
+@media(max-height:500px){.frameo-full-message.is-climate-message:not(.has-camera) .frameo-message-mark{width:150px;height:150px}.frameo-message-badge{font-size:20px;padding:5px 9px}.frameo-garage-pip{width:150px}}
+@media(prefers-reduced-motion:reduce){.frameo-fan-blades,.frameo-airco-wind{animation:none!important}}
+:root[data-motion="off"] .frameo-fan-blades,:root[data-motion="off"] .frameo-airco-wind{animation:none!important}

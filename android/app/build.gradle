@@ -1,0 +1,15 @@
+plugins { id 'com.android.application' }
+
+android {
+    namespace 'app.lightpanel.launcher'
+    compileSdk 35
+    // Private Android 6 kiosk APK, not distributed through Google Play.
+    lint { disable 'ExpiredTargetSdkVersion' }
+    defaultConfig {
+        applicationId 'app.lightpanel.launcher'
+        minSdk 23
+        targetSdk 28
+        versionCode 1
+        versionName '0.1.0'
+    }
+}

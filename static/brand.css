@@ -1,0 +1,1 @@
+.dashboard-brand{position:absolute;left:50%;transform:translateX(-50%);border:0;background:transparent;color:#bcdad7;font:600 18px system-ui;letter-spacing:.04em;cursor:pointer}.home-header{position:relative}#live-ticker:not([hidden])~.dashboard-brand{display:none}

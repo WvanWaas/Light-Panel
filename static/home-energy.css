@@ -1,0 +1,153 @@
+/* Compact home cards: keep the photograph dominant, details stay one tap away. */
+.stats>.tile.energy-card,.stats>.tile.climate-card{height:200px;min-height:200px;min-width:0;padding:0;gap:0;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;text-align:left;background:#23496454;border-color:#ffffff24}
+html[data-performance="lite"] .stats>.tile.energy-card,html[data-performance="lite"] .stats>.tile.climate-card{background:#365b70}
+html[data-night="true"] .stats>.tile.energy-card,html[data-night="true"] .stats>.tile.climate-card{background:#1a2a3c}
+.energy-card .energy-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;height:72px;min-height:72px;padding:12px 15px 5px;flex:none;position:relative}
+.energy-card .energy-top>.battery-control{display:block;flex:1;min-width:0;padding:0;min-height:0}
+.energy-card .battery-control .battery-readout{display:flex;flex-direction:column;gap:5px;align-items:flex-start;width:100%}
+.energy-card .battery-readout>strong,.energy-card .energy-top>.home-price>b{font-size:42px;line-height:1.08;font-weight:550;letter-spacing:-1.5px;font-variant-numeric:tabular-nums;color:#f4f7fa!important}
+.energy-card .home-battery-support{display:flex;align-items:baseline;gap:5px;white-space:nowrap;line-height:1.4}
+.energy-card .home-battery-support .battery-available,.energy-card .home-battery-support #battery-flow{font-size:12px;font-weight:400;color:#c4d5df;white-space:nowrap}
+.energy-card .energy-top>.home-price{display:flex;flex:0 0 auto;flex-direction:row;align-items:center;justify-content:flex-end;gap:5px;padding:0;background:transparent;border-radius:0;line-height:1.1;min-height:44px;text-align:right}
+.energy-card .energy-top>.home-price>b{font-size:39px}
+.energy-card .home-price .icon{width:16px;height:16px;stroke:#d8e4e9}
+.energy-card .home-energy-flows{display:flex;justify-content:space-between;align-items:center;gap:7px;height:38px;min-height:38px;flex:none;width:100%;padding:0 15px 6px;border:0}
+.energy-card .home-energy-flows>button{display:flex;flex-direction:row;align-items:center;gap:5px;min-width:0;min-height:32px;white-space:nowrap}
+.energy-card .home-energy-flows .icon{display:block;width:15px;height:15px;stroke:#bdcdd8;flex:none}
+.energy-card .home-energy-flows b{font-size:16px;line-height:1.2;font-weight:500;letter-spacing:-.25px;white-space:nowrap;font-variant-numeric:tabular-nums;color:#f4f7fa}
+.energy-card>.home-energy-plot{display:block;width:100%;height:auto;min-height:54px;flex:1;position:relative;overflow:hidden;padding:0;margin:0;border-radius:0}
+.home-energy-svg{display:block;width:100%;height:100%;overflow:hidden}
+.home-energy-price-bar{opacity:.95;shape-rendering:crispEdges}.home-energy-price-bar.is-past{opacity:.72}
+.home-energy-sun,.home-energy-soc{fill:none;stroke:#efcb62;stroke-width:1.8;stroke-linejoin:round;vector-effect:non-scaling-stroke}.home-energy-soc{stroke:#75bafb;stroke-width:2}.home-energy-soc-dot{fill:#75bafb}
+.home-energy-sun.is-planned,.home-energy-soc.is-planned{stroke-dasharray:5 4;opacity:.8}.home-energy-sun.is-fallback{opacity:.55}
+.home-energy-reserve{stroke:#75bafb30;stroke-width:1;stroke-dasharray:3 5;vector-effect:non-scaling-stroke}
+.home-energy-now{stroke:#f5f9fc;stroke-width:5;vector-effect:non-scaling-stroke}.home-energy-now-text{fill:#f5f9fc;font:11px system-ui,sans-serif;font-weight:550}
+.home-energy-empty{display:flex;align-items:center;justify-content:center;height:100%;font-size:12px;color:#bdcdd8}
+.energy-card #home-energy-status{position:absolute;right:2px;top:1px;color:#f3ca78;font-size:11px;font-weight:600;padding:0 4px;z-index:2}.energy-card #home-energy-status[hidden]{display:none}
+.stats>.tile.climate-card{padding:13px 15px 14px;justify-content:space-between}
+.climate-card .climate-home-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;min-height:70px;width:100%}
+.climate-card .climate-temperatures{display:flex;align-items:center;gap:10px;min-width:0;min-height:70px}
+.climate-card .climate-temperatures .indoor-readout{display:flex;align-items:center;gap:6px;min-width:0;margin:0;min-height:44px}
+.climate-card .indoor-readout .icon{width:18px;height:22px;stroke:#c2d3df;flex:none}
+.climate-card .indoor-readout strong{font-size:44px;font-weight:550;line-height:1.1;letter-spacing:-1.7px;font-variant-numeric:tabular-nums}
+.climate-card .outdoor-readout{font-size:18px;font-weight:500;min-height:44px;white-space:nowrap;color:#bdcdd6;font-variant-numeric:tabular-nums}
+.climate-card .outdoor-readout[data-tone="colder"]{color:#74bbef}.climate-card .outdoor-readout[data-tone="warmer"]{color:#f18d83}
+.climate-card .climate-home-top .hot-water-readout{position:relative;isolation:isolate;overflow:hidden;width:70px;height:70px;min-height:70px;flex:none;border-radius:50%;border:1px solid #b7d1df30;background:#ffffff07;display:block;padding:0;text-align:center;white-space:nowrap}
+.climate-card .hot-water-readout .tapwater-pool{position:absolute;inset:37% 0 0;background:var(--tapwater-color,#365568);pointer-events:none;z-index:0}
+.climate-card .hot-water-readout .tapwater-wave{top:-9px;height:18px;fill:var(--tapwater-color,#365568)}
+.climate-card .water-orb-content{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;width:100%;height:100%;position:relative;z-index:1;text-shadow:0 1px 4px #10222b80}
+.climate-card .water-orb-content .icon{display:block;position:absolute;top:7px;left:50%;transform:translateX(-50%);width:13px;height:13px;stroke:#fff}
+.climate-card .hot-water-readout .water-orb-content b{font-size:18px;font-weight:550;color:#fff;font-variant-numeric:tabular-nums;letter-spacing:-.3px;line-height:1;margin:0;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+.climate-card .climate-home-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;min-width:0}
+.climate-card .climate-co2{border:1px solid #a8c4d51c;background:#ffffff06;border-radius:10px;padding:9px 12px;min-height:59px;display:flex;flex-direction:column;gap:3px;min-width:100px;text-align:left}
+.climate-card .climate-co2>span{font-size:11px;color:#bdcdd6}.climate-card .climate-co2>b{font-size:22px;font-weight:550;line-height:1.1;letter-spacing:-.4px;font-variant-numeric:tabular-nums}
+.climate-card .climate-mini-devices{display:flex;flex-direction:column;gap:0;min-width:0;padding-bottom:1px;max-width:55%}
+.climate-card .climate-mini-devices button{display:flex;align-items:center;justify-content:flex-end;gap:8px;min-height:32px;min-width:0;white-space:nowrap;text-align:right}
+.climate-card .climate-mini-devices .icon{width:16px;height:16px;stroke:#bdcdd6;flex:none}.climate-card .climate-mini-devices b{font-size:16px;font-weight:500;font-variant-numeric:tabular-nums;overflow:hidden;text-overflow:ellipsis}
+@media(pointer:coarse){.energy-card .home-energy-flows{height:50px;min-height:50px}.energy-card .home-energy-flows>button{min-height:44px}.climate-card .climate-mini-devices button{min-height:44px}}
+@media(max-width:560px){.energy-card .energy-top{height:68px;min-height:68px;gap:6px;padding:10px 10px 22px}.energy-card .battery-readout>strong{font-size:33px}.energy-card .energy-top>.home-price>b{font-size:32px}.energy-card .home-price .icon{width:13px;height:13px}.energy-card .energy-top>.home-price{gap:3px;min-height:36px}.energy-card .home-battery-support{position:absolute;left:10px;right:10px;bottom:4px;gap:4px}.energy-card .home-battery-support .battery-available,.energy-card .home-battery-support #battery-flow{font-size:11px}.energy-card .home-energy-flows{padding-left:10px;padding-right:10px;gap:4px}.energy-card .home-energy-flows b{font-size:14px}.energy-card .home-energy-flows .icon{width:12px;height:12px}.stats>.tile.climate-card{padding:12px 10px}.climate-card .climate-home-top{gap:6px}.climate-card .climate-temperatures{gap:5px}.climate-card .indoor-readout strong{font-size:36px}.climate-card .outdoor-readout{font-size:16px}.climate-card .climate-home-top .hot-water-readout{width:60px;height:60px;min-height:60px}.climate-card .climate-home-bottom{gap:7px}.climate-card .climate-co2{min-width:74px;padding:8px}.climate-card .climate-co2>b{font-size:20px}.climate-card .climate-mini-devices button{gap:5px}.climate-card .climate-mini-devices b{font-size:14px}}
+@media(max-width:430px){.energy-card .battery-readout>strong{font-size:30px}.energy-card .energy-top>.home-price>b{font-size:29px}.energy-card .home-energy-flows b{font-size:13px}.energy-card .home-energy-flows [data-icon]{display:none}.climate-card .climate-temperatures{flex-direction:column;align-items:flex-start;gap:0;min-height:70px}.climate-card .indoor-readout strong{font-size:32px}.climate-card .indoor-readout .icon{width:15px;height:18px}.climate-card .climate-temperatures .indoor-readout{gap:4px}.climate-card .outdoor-readout{font-size:14px;min-height:24px;padding-left:19px}.climate-card .climate-home-top .hot-water-readout{width:54px;height:54px;min-height:54px}.climate-card .hot-water-readout .water-orb-content b{font-size:15px}.climate-card .water-orb-content .icon{width:11px;height:11px}.climate-card .climate-co2{min-width:62px;padding:8px 6px}.climate-card .climate-co2>b{font-size:18px}.climate-card .climate-mini-devices{max-width:50%}.climate-card .climate-mini-devices button{gap:4px}.climate-card .climate-mini-devices .icon{width:13px;height:13px}.climate-card .climate-mini-devices b{font-size:13px}}
+
+/* A faint screen-edge reflection of the same command as the physical LEDs. */
+#screen-led-glow{position:fixed;inset:0;z-index:10000;pointer-events:none;border-radius:8px;background:linear-gradient(to bottom,rgba(var(--edge-led,0,0,0),.55),transparent 24px),linear-gradient(to top,rgba(var(--edge-led,0,0,0),.55),transparent 24px),linear-gradient(to right,rgba(var(--edge-led,0,0,0),.55),transparent 24px),linear-gradient(to left,rgba(var(--edge-led,0,0,0),.55),transparent 24px);opacity:var(--edge-strength,0);transition:opacity .6s,box-shadow 1s}
+#screen-led-glow.is-breathing{animation:screen-led-breathe 3s ease-in-out infinite}
+@keyframes screen-led-breathe{0%,100%{opacity:calc(var(--edge-strength,0)*.35)}50%{opacity:var(--edge-strength,0)}}
+@media(prefers-reduced-motion:reduce){#screen-led-glow{transition:none}#screen-led-glow.is-breathing{animation:none}}
+
+/* Generous separate dismiss target for the notification stack. */
+.card-stack .ticker-dismiss{display:flex;align-items:center;justify-content:center;align-self:flex-start;flex:0 0 52px;min-width:52px;min-height:52px;padding:4px;font-size:36px;line-height:1}
+.notification-card .notification-dismiss{min-width:52px;min-height:52px;font-size:34px;line-height:1}
+
+.photo-frame>.photo-wake{display:block;position:absolute;inset:0;z-index:1;width:100%;height:100%;border:0;border-radius:0;padding:0;background:transparent;cursor:pointer}
+
+/* Centre the number independently of the droplet and inherited readout rules. */
+.climate-card .hot-water-readout .water-orb-content b{position:static;inset:auto;display:block;width:auto;height:auto;transform:none;text-align:center;padding:0;margin:0;white-space:nowrap;line-height:1}
+.energy-card .energy-top{height:64px;min-height:64px}
+@media(max-width:560px){.energy-card .energy-top{height:64px;min-height:64px}}
+
+.energy-card .home-battery-support{display:none}
+
+.energy-card .battery-percentage{display:flex;align-items:baseline;gap:7px;white-space:nowrap}
+.energy-card .battery-percentage>strong{font-size:42px;line-height:1.08;font-weight:550;letter-spacing:-1.5px;font-variant-numeric:tabular-nums;color:#f4f7fa}
+.energy-card #battery-direction{font-size:27px;font-weight:500;line-height:1;color:#c9deeb}
+@media(max-width:560px){.energy-card .battery-percentage>strong{font-size:33px}.energy-card #battery-direction{font-size:23px}}
+@media(max-width:430px){.energy-card .battery-percentage>strong{font-size:30px}.energy-card #battery-direction{font-size:21px}}
+
+.climate-card .water-orb-content{z-index:3;isolation:isolate}
+.climate-card .climate-temperatures{align-items:baseline}
+.climate-card .climate-temperatures .indoor-readout{align-items:baseline}
+.climate-card .indoor-readout .icon{align-self:center}
+.climate-card .outdoor-readout{min-height:0;line-height:1.1;padding-top:0;padding-bottom:0}
+.energy-card #battery-rate{font-size:12px;line-height:1.2;font-weight:400;letter-spacing:0;color:#bdcdd8;margin:0;white-space:nowrap}
+@media(max-width:560px){.energy-card #battery-rate{position:absolute;top:47px;left:10px;font-size:11px}}
+@media(max-width:430px){.climate-card .climate-temperatures{align-items:flex-start}}
+
+
+
+/* Anchor the entire label layer to the orb, bypassing browser button layout. */
+.climate-card .hot-water-readout .water-orb-content{position:absolute;top:0;right:0;bottom:0;left:0;width:auto;height:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0;padding:0;z-index:3;pointer-events:none}
+.climate-card .hot-water-readout .water-orb-content b{position:static;top:auto;right:auto;bottom:auto;left:auto;transform:none;display:block;width:auto;height:auto;margin:0;padding:0;text-align:center;line-height:1}
+
+/* Centre droplet and value together as one vertical group. */
+.climate-card .hot-water-readout .water-orb-content{gap:4px}
+.climate-card .hot-water-readout .water-orb-content [data-icon]{display:flex;align-items:center;justify-content:center;flex:none}
+.climate-card .hot-water-readout .water-orb-content .icon{position:static;top:auto;right:auto;bottom:auto;left:auto;transform:none;margin:0;flex:none}
+
+/* Actual WK5 space heating/passive cooling, separate from tapwater. */
+.stats>.tile.climate-card::before{content:"";position:absolute;top:0;right:0;bottom:0;left:0;z-index:0;pointer-events:none;opacity:0;background:radial-gradient(ellipse at 15% 30%,rgba(var(--climate-glow,0,0,0),.27),transparent 80%),linear-gradient(0deg,rgba(var(--climate-glow,0,0,0),.13),transparent 65%)}
+.stats>.tile.climate-card[data-climate-mode="heating"]{--climate-glow:245,76,62;border-color:#ef766966}
+.stats>.tile.climate-card[data-climate-mode="passive-cooling"]{--climate-glow:63,155,255;border-color:#69b4f877}
+.stats>.tile.climate-card[data-climate-mode="heating"]::before,.stats>.tile.climate-card[data-climate-mode="passive-cooling"]::before{opacity:1}
+@media(max-width:430px){.climate-card .outdoor-readout{padding-left:0}}
+
+/* Aircraft stay in their own quieter, independently swipeable second row. */
+.home-header>.header-notifications{grid-column:2;grid-row:1;display:flex;flex-direction:column;align-items:stretch;justify-content:center;gap:6px;min-width:0;width:100%;max-width:560px;justify-self:center}
+.home-header .header-notifications>.dashboard-brand{position:static;transform:none;left:auto;max-width:100%;min-height:52px;padding:0;align-self:center}
+.header-notifications[data-main="true"]>.dashboard-brand{display:none}
+.header-notifications[data-main="false"][data-flight="true"]>.dashboard-brand{min-height:36px}
+.header-notifications[data-main="false"][data-flight="true"]>.dashboard-brand img{width:140px}
+.home-header .header-notifications>.live-ticker{max-height:none;min-height:54px;margin-bottom:0;max-width:none;align-self:stretch}
+.header-notifications>.live-ticker .ticker-open{min-height:54px}
+.home-header .flight-ticker{--stack-space:0px;--stack-accent:#9bc9d331;min-width:0;width:calc(100% - var(--stack-space));margin-left:var(--stack-space);min-height:40px;color:#c7dce5;position:relative;border:0;border-radius:11px}
+.home-header .flight-ticker[hidden]{display:none!important}
+.flight-ticker::after,.flight-ticker .ticker-peek{background:#17303be6;border-color:#8cbdca38;border-radius:11px}
+.flight-ticker[data-depth="1"]{--stack-space:10px}.flight-ticker[data-depth="2"]{--stack-space:18px}
+.flight-ticker .ticker-peek{transform:translate(calc(var(--depth) * -9px),calc(var(--depth) * 2px))}
+.flight-ticker .ticker-peek .ticker-symbol{width:18px;margin-left:0}.flight-ticker .ticker-peek .icon{width:16px;height:16px}
+.flight-ticker .ticker-open{padding:6px 7px 6px 10px;min-height:40px;gap:7px}
+.flight-ticker .ticker-symbol{display:flex;align-items:center;justify-content:center;width:20px;height:24px;background:none;flex:none}
+.flight-ticker .ticker-symbol .icon{width:18px;height:18px;stroke:#a4c8d7}
+.flight-ticker .flight-strip-copy{display:flex;align-items:baseline;gap:8px;line-height:1.25;white-space:nowrap;min-width:0;font-size:12px}
+.flight-strip-copy>b{font-size:12px;font-weight:550;flex:none;max-width:35%;overflow:hidden;text-overflow:ellipsis}
+.flight-strip-route{overflow:hidden;text-overflow:ellipsis;min-width:0;flex:1}.flight-strip-copy>small{font-size:10px;color:#a4bdcc;flex:none}
+.card-stack.flight-ticker .ticker-dismiss{display:flex;align-items:center;justify-content:center;align-self:center;flex-basis:40px;min-width:40px;min-height:40px;padding:0;font-size:28px}
+.flight-ticker .ticker-count{right:42px;bottom:1px;font-size:9px}.panel-open .flight-ticker{visibility:hidden}
+@media(max-width:560px){.home-header>.header-notifications{grid-column:1/-1;grid-row:2;max-width:none}.home-header .header-notifications>.dashboard-brand{display:none}.header-notifications[data-main="false"][data-flight="false"]{display:none}.home-header .header-notifications>.live-ticker{min-height:58px;margin-bottom:0}.flight-ticker .flight-strip-copy{font-size:11px;gap:6px}.flight-strip-copy>b{font-size:11px}.flight-strip-copy>small{display:none}}
+
+@media(max-width:560px){.home-header>.header-notifications[data-main="false"][data-flight="false"]{display:flex;grid-column:2;grid-row:1}.home-header .header-notifications[data-main="false"]>.dashboard-brand{display:flex;position:absolute;top:0;left:50%;transform:translateX(-50%);width:140px;max-width:40%;min-height:52px}}
+
+/* The detailed feed keeps aircraft in a compact side column, including history. */
+.overlay.notifications-wide{width:min(1040px,calc(100% - 32px))}
+.notification-columns{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(250px,.9fr);gap:22px;align-items:start;margin-top:18px}
+.notification-columns.no-flights{grid-template-columns:minmax(0,1fr)}
+.notification-primary,.notification-flights{min-width:0}
+.notification-column-title{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 2px 8px;border-bottom:1px solid #ffffff16}
+.notification-column-title h2{font-size:15px;font-weight:550;margin:0}.notification-column-title>span{font-size:11px;color:#b5c8d2}
+.notification-empty{padding:16px 3px;line-height:1.6}
+.notification-flights .notification-card{padding:10px 11px;margin:8px 0;border-radius:11px;background:#192d39;border-color:#9abaca26}
+.notification-flights .notification-heading{gap:7px;align-items:center}.notification-flights .notification-heading h2{font-size:13px;line-height:1.3;min-width:0;margin:0}
+.notification-flights .notification-heading>.icon{width:18px;height:18px}
+.notification-flights .notification-state{font-size:9px}
+.notification-flights .flight-detail-route{font-size:13px;margin-top:7px;gap:5px;line-height:1.35}
+.notification-flights .country-flag{width:14px;height:10px}
+.notification-flights .notification-card p{font-size:11px;line-height:1.45;margin:6px 0;color:#b7ccd7}
+.notification-flights .notification-card>.muted{font-size:10px;display:block;line-height:1.5}
+.notification-flights .notification-more{font-size:11px;margin-top:7px;min-height:30px;display:flex;align-items:center}
+.notification-flights .notification-dismiss{min-width:36px;min-height:36px;font-size:27px;flex:none;border-radius:8px;padding:0}
+@media(max-width:740px){.notification-columns{grid-template-columns:minmax(0,1fr);gap:20px}.notification-flights .notification-card{margin:7px 0}.notification-flights .notification-dismiss{min-width:40px;min-height:40px}}
+
+.notification-card-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.notification-card-actions .notification-more{margin-top:10px}.notification-ack{border:1px solid #aac7d22e;border-radius:8px;background:#ffffff06;color:#b9d1dc;font-size:12px;min-height:36px;padding:6px 11px;margin-top:10px}.notification-known{border-color:#a7c2cf16;background:#192832}.notification-known h2{color:#bdcdd6}
+
+.ticker-laundry{--ticker-color:#68c9dd}.ticker-fault{--ticker-color:#ffac62}
+
+.ticker-laundry .ticker-symbol,.filter-laundry[aria-pressed="true"]{color:#68c9dd}.ticker-fault .ticker-symbol,.filter-fault[aria-pressed="true"]{color:#ffac62}.filter-laundry[aria-pressed="true"]{border-color:#68c9dd}.filter-fault[aria-pressed="true"]{border-color:#ffac62}
