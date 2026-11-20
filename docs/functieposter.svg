@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1440" viewBox="0 0 1440 1440" role="img" aria-labelledby="title desc"><title id="title">Light Panel — functieoverzicht</title><desc id="desc">Twaalf onderwerpen: foto's, energie, batterij, apparaten, klimaat, weer, agenda, meldingen, woningmeldingen, bediening, camera's en fotolijstbeheer. Beschikbaarheid hangt af van eigen koppelingen en hardware.</desc><defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#07121e"/><stop offset="1" stop-color="#122338"/></linearGradient><radialGradient id="glow"><stop stop-color="#22d9b3" stop-opacity=".22"/><stop offset="1" stop-color="#22d9b3" stop-opacity="0"/></radialGradient></defs><style>text{font-family:Arial,Helvetica,sans-serif;fill:#eff6fa}.eyebrow{fill:#70dfc7;font-size:18px;letter-spacing:3px}.heading{font-size:58px;font-weight:700}.subtitle{font-size:24px;fill:#bdceda}.card-title{font-size:24px;font-weight:700}.tagline{font-size:21px;fill:#76dfcb}.detail{font-size:18px;fill:#bdceda}.num{font-size:16px;fill:#6acdbb}</style><rect width="1440" height="1440" rx="28" fill="url(#bg)"/><ellipse cx="1110" cy="140" rx="480" ry="300" fill="url(#glow)"/><rect x="16" y="16" width="1408" height="1408" rx="23" fill="none" stroke="#46c7ad" stroke-opacity=".35"/><text x="60" y="70" class="eyebrow">LIGHT PANEL · FUNCTIEOVERZICHT</text><text x="60" y="150" class="heading">Meer dan een fotolijst.</text><text x="60" y="195" class="subtitle">Je foto’s op de voorgrond. Je huis binnen handbereik.</text><text x="60" y="235" class="detail">Een open startpunt voor jouw tablet, fotolijst of browser.</text>
+<rect x="60" y="280" width="424" height="222" rx="18" fill="#192d3f" stroke="#365065"/>
+<text x="84" y="313" class="num">01</text>
+<text x="84" y="356" class="card-title">Foto’s &amp; thuis</text>
+<text x="84" y="394" class="tagline">Je foto’s op de voorgrond.</text>
+<text x="84" y="437" class="detail">Automatische fotowissel en volbeeld.</text>
+<text x="84" y="467" class="detail">Klok en datum vanuit de server.</text>
+<rect x="504" y="280" width="424" height="222" rx="18" fill="#192d3f" stroke="#365065"/>
+<text x="528" y="313" class="num">02</text>
+<text x="528" y="356" class="card-title">Energie &amp; Tibber</text>
+<text x="528" y="394" class="tagline">Weten wat stroom kost.</text>
+<text x="528" y="437" class="detail">Dag, week, maand en jaar.</text>
+<text x="528" y="467" class="detail">Kosten, opbrengsten en netto inzicht.</text>
+<rect x="948" y="280" width="424" height="222" rx="18" fill="#192d3f" stroke="#365065"/>
+<text x="972" y="313" class="num">03</text>
+<text x="972" y="356" class="card-title">Accu &amp; zonnepanelen</text>
+<text x="972" y="394" class="tagline">Zien wat je overhoudt.</text>
+<text x="972" y="437" class="detail">Lading, vermogen en batterijreserve.</text>
+<text x="972" y="467" class="detail">Zonverwachting en Victron-planning.</text>
+<rect x="60" y="525" width="424" height="222" rx="18" fill="#192d3f" stroke="#365065"/>
+<text x="84" y="558" class="num">04</text>
+<text x="84" y="601" class="card-title">Stroom per apparaat</text>
+<text x="84" y="639" class="tagline">Waar gaat het naartoe?</text>
+<text x="84" y="682" class="detail">Actueel vermogen per verbruiker.</text>
+<text x="84" y="712" class="detail">Dagtotaal en beschikbare meetgrafieken.</text>
+<rect x="504" y="525" width="424" height="222" rx="18" fill="#192d3f" stroke="#365065"/>
+<text x="528" y="558" class="num">05</text>
+<text x="528" y="601" class="card-title">Klimaat &amp; comfort</text>
+<text x="528" y="639" class="tagline">Hoe voelt het binnen?</text>
+<text x="528" y="682" class="detail">Temperatuur, tapwater en CO₂.</text>
+<text x="528" y="712" class="detail">Thermostaten, airco en ventilatie.</text>
+<rect x="948" y="525" width="424" height="222" rx="18" fill="#192d3f" stroke="#365065"/>
+<text x="972" y="558" class="num">06</text>
+<text x="972" y="601" class="card-title">Weer, zon &amp; maan</text>
+<text x="972" y="639" class="tagline">Een blik naar buiten.</text>
+<text x="972" y="682" class="detail">Weer en verwachting met animaties.</text>
+<text x="972" y="712" class="detail">Zon- en maantijden waar beschikbaar.</text>
+<rect x="60" y="770" width="424" height="222" rx="18" fill="#192d3f" stroke="#365065"/>
+<text x="84" y="803" class="num">07</text>
+<text x="84" y="846" class="card-title">Agenda &amp; aftellen</text>
+<text x="84" y="884" class="tagline">Wat staat er te gebeuren?</text>
+<text x="84" y="927" class="detail">Agenda’s met eigen kleuren en filters.</text>
+<text x="84" y="957" class="detail">Aftellen naar bijzondere momenten.</text>
+<rect x="504" y="770" width="424" height="222" rx="18" fill="#192d3f" stroke="#365065"/>
+<text x="528" y="803" class="num">08</text>
+<text x="528" y="846" class="card-title">De meldingenbak</text>
+<text x="528" y="884" class="tagline">Aandacht wanneer nodig.</text>
+<text x="528" y="927" class="detail">Meldingen stapelen, filteren en swipen.</text>
+<text x="528" y="957" class="detail">Details en historie, ook na wegklikken.</text>
+<rect x="948" y="770" width="424" height="222" rx="18" fill="#192d3f" stroke="#365065"/>
+<text x="972" y="803" class="num">09</text>
+<text x="972" y="846" class="card-title">Het huis meldt zich</text>
+<text x="972" y="884" class="tagline">Van deurbel tot wasgoed.</text>
+<text x="972" y="927" class="detail">Grote meldingen met icoon of camera.</text>
+<text x="972" y="957" class="detail">Luchten, storingen en laadadvies.</text>
+<rect x="60" y="1015" width="424" height="222" rx="18" fill="#192d3f" stroke="#365065"/>
+<text x="84" y="1048" class="num">10</text>
+<text x="84" y="1091" class="card-title">Lampen &amp; media</text>
+<text x="84" y="1129" class="tagline">Bediening binnen handbereik.</text>
+<text x="84" y="1172" class="detail">Lampen via je eigen plattegrond.</text>
+<text x="84" y="1202" class="detail">Media en acties via Home Assistant.</text>
+<rect x="504" y="1015" width="424" height="222" rx="18" fill="#192d3f" stroke="#365065"/>
+<text x="528" y="1048" class="num">11</text>
+<text x="528" y="1091" class="card-title">Camera’s, nieuws &amp; sites</text>
+<text x="528" y="1129" class="tagline">Ook de rest in beeld.</text>
+<text x="528" y="1172" class="detail">Camerafoto’s en garagebeeld-in-beeld.</text>
+<text x="528" y="1202" class="detail">Nieuws en controle van eigen websites.</text>
+<rect x="948" y="1015" width="424" height="222" rx="18" fill="#192d3f" stroke="#365065"/>
+<text x="972" y="1048" class="num">12</text>
+<text x="972" y="1091" class="card-title">Fotolijst op afstand</text>
+<text x="972" y="1129" class="tagline">Alles bij de hand.</text>
+<text x="972" y="1172" class="detail">Scherm, LED’s, geluid en berichten.*</text>
+<text x="972" y="1202" class="detail">Webhooks voor je eigen automatisering.</text>
+<text x="60" y="1304" class="subtitle">Jouw huis. Jouw scherm. Jouw versie.</text><text x="60" y="1340" class="detail">Alle functies hangen af van je eigen instellingen, sensoren en koppelingen.</text><text x="60" y="1370" class="detail">* Scherm- en LED-bediening vereisen ondersteunde hardware en de passende Android-app.</text><text x="60" y="1400" class="detail">Home Assistant · Tibber · Victron · GNU GPLv3</text></svg>

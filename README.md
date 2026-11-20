@@ -1,6 +1,30 @@
 # Light Panel
 
-Een persoonlijk dashboard voor een fotolijst, tablet of browser. Foto’s staan centraal, met energie, klimaat en meldingen binnen handbereik.
+**Je foto’s op de voorgrond. Je huis binnen handbereik.** Een persoonlijk dashboard voor een fotolijst, tablet of browser.
+
+![Light Panel-functieposter: twaalf onderwerpen van foto’s en energie tot klimaat, meldingen en fotolijstbediening](docs/functieposter.svg)
+
+## Alles wat Light Panel kan
+
+| | Onderdeel | Mogelijkheden met je eigen koppelingen |
+| --- | --- | --- |
+| 🖼️ | **Foto’s & thuis** | Automatische fotowissel, foto op volledig scherm, klok en datum met servertijd. |
+| ⚡ | **Energie & Tibber** | Actuele prijs, gekleurde uurbalken, kosten en teruglevering per dag, week, maand en jaar. Jouw betaalde gemiddelde naast de gemiddelde stroomprijs; morgenprijzen zodra beschikbaar. |
+| 🔋 | **Accu & zonnepanelen** | Lading, laad- of ontlaadvermogen, beschikbare kWh boven de reserve, laadgrafiek en ondergrens. Victron-planning en zonverwachting naast de stroomprijs; laadadvies met batterijruimte en verwachte zon. |
+| 🔌 | **Stroom per apparaat** | Huidig vermogen en beschikbaar dagtotaal per verbruiker. Van warmtepomp en witgoed tot kantoor en entertainment, met meetgrafieken. |
+| 🌡️ | **Klimaat & comfort** | Binnen- en buitentemperatuur, tapwater, CO₂, warmtepompvermogen en ventilatie. Gloed bij verwarmen of koelen; bediening van ondersteunde thermostaten, airco’s en ventilatiestanden. |
+| 🌦️ | **Weer, zon & maan** | Actueel weer, uur- en meerdaagse verwachting, bewegende weerweergave, maanstand en beschikbare zon- en maantijden. |
+| 📅 | **Agenda & aftellen** | Dag-, week- en maandagenda, kleuren en filters per agenda, afspraakdetails en aftellen naar bijzondere momenten. |
+| 🗂️ | **De meldingenbak** | Brandweer, ambulance, GRIP en een compacte vliegtuigenbalk. Nieuwste kaart bovenop, één voor één swipen of openen, filters en bewaarde historie. |
+| 🔔 | **Het huis meldt zich** | Grote meldingen met animaties, icoon of camerafoto. Deurbel, garage, apparaten klaar, wasgoedherinnering, CO₂, storingen, noorderlichtkans en goedkoop laden, afhankelijk van ingestelde bronnen. |
+| 💡 | **Lampen & entertainment** | Lampen via je eigen plattegrond, helderheid en kleur waar ondersteund. Media, volume en andere acties via jouw HA-services en scripts. |
+| 📷 | **Camera’s, nieuws & sites** | Camerafoto’s die tijdens een melding verversen, garagebeeld-in-beeld, nieuws van NOS en Tweakers en beschikbaarheidscontrole van eigen websites. Camerafoto’s zijn geen videostream. |
+| 🖥️ | **Fotolijst op afstand** | Beheerpagina, schermbeelden, grote berichten, geluid, webhooks en bediening van verbonden fotolijsten. Scherm en LED’s vereisen ondersteunde hardware en de passende Android-app. |
+
+**Laat het met je dag meelopen.** Je kunt via eigen Home Assistant-automatiseringen het scherm en de LED’s laten reageren op lampen, entertainment of aanwezigheid. Persoonlijke automations en apparaatinstellingen worden niet meegeleverd.
+
+[Open de functieposter afzonderlijk](docs/functieposter.svg) · [Maak je eigen versie met AI](docs/AI-START.md)
+
 
 Deze startversie bevat geen persoonlijke foto’s, huisplattegrond, logo, accountgegevens of geschiedenis van het oorspronkelijke project. Koppelingen zijn optioneel en starten leeg. Zonder Home Assistant zie je nog geen eigen meetwaarden; dit is een startscherm, geen gevulde demo.
 
