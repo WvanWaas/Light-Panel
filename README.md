@@ -16,6 +16,20 @@ These reference screenshots show the creator’s original installation, includin
 
 Click an image to open it at full size.
 
+## More example screenshots
+
+Full-screen appliance and alarm messages, weather, heat-pump temperature charts and appliance energy. These additional examples use synthetic data and show the existing interface. Some interface labels are Dutch.
+
+| Washing machine finished | Alarm armed |
+| --- | --- |
+| <a href="docs/screenshots/washer-finished.jpg"><img src="docs/screenshots/washer-finished.jpg" alt="Washing machine finished" width="280"></a> | <a href="docs/screenshots/alarm-armed.jpg"><img src="docs/screenshots/alarm-armed.jpg" alt="Alarm armed" width="280"></a> |
+
+| Weather | Appliance energy |
+| --- | --- |
+| <a href="docs/screenshots/weather.jpg"><img src="docs/screenshots/weather.jpg" alt="Weather" width="280"></a> | <a href="docs/screenshots/appliance-energy.jpg"><img src="docs/screenshots/appliance-energy.jpg" alt="Appliance energy" width="280"></a> |
+
+[Browse all ten screenshots, including disarmed alarm and temperature history](docs/screenshots/README.md).
+
 ## What can it do?
 
 | | Area | Features with your own integrations |

@@ -16,6 +16,20 @@ Deze referentiebeelden tonen de oorspronkelijke installatie van de maker, met he
 
 Klik op een afbeelding om deze op volledig formaat te openen.
 
+## Meer voorbeeldscreenshots
+
+Volbeeldmeldingen voor apparaten en alarm, weer, warmtepomptemperaturen en energie per apparaat. Deze extra voorbeelden gebruiken fictieve gegevens in de bestaande interface.
+
+| Wasmachine klaar | Alarm aan |
+| --- | --- |
+| <a href="docs/screenshots/washer-finished.jpg"><img src="docs/screenshots/washer-finished.jpg" alt="Wasmachine klaar" width="280"></a> | <a href="docs/screenshots/alarm-armed.jpg"><img src="docs/screenshots/alarm-armed.jpg" alt="Alarm aan" width="280"></a> |
+
+| Weer | Energie per apparaat |
+| --- | --- |
+| <a href="docs/screenshots/weather.jpg"><img src="docs/screenshots/weather.jpg" alt="Weer" width="280"></a> | <a href="docs/screenshots/appliance-energy.jpg"><img src="docs/screenshots/appliance-energy.jpg" alt="Energie per apparaat" width="280"></a> |
+
+[Bekijk alle tien screenshots, ook alarm uit en temperatuurverloop](docs/screenshots/README.nl.md).
+
 ## Alles wat Light Panel kan
 
 | | Onderdeel | Mogelijkheden met je eigen koppelingen |
