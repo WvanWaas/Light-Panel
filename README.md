@@ -6,7 +6,7 @@ Deze startversie bevat geen persoonlijke foto’s, huisplattegrond, logo, accoun
 
 ## Beginnen in vijf minuten
 
-Installeer Docker met Docker Compose. Open een terminal in deze map en voer uit:
+Installeer Docker met Docker Compose. Download deze repository als zip of kloon hem, open een terminal in de projectmap en voer uit:
 
 ```sh
 cp .env.example .env
@@ -68,6 +68,6 @@ Het dashboard bevat bediening voor je huis en een beheerpagina zonder algemene a
 
 Na wijzigingen aan broncode: `docker compose up -d --build`. Bij een herstart van de backend kunnen geopende dashboardpagina’s automatisch vernieuwen.
 
-Deze map is bedoeld als een zelfstandig project met een nieuwe Git-geschiedenis. Maak hiervoor een **nieuwe repository** en zet die desgewenst later om naar een GitHub-template. Maak geen publieke fork van een persoonlijke repository waarvan de oude geschiedenis gevoelige gegevens kan bevatten.
+Light Panel is een zelfstandige template met een nieuwe Git-geschiedenis. Gebruik op GitHub **Use this template → Create a new repository** om je eigen versie te beginnen. Je eigen configuratie en foto’s blijven lokaal en worden niet meegecommit.
 
-De projectlicentie is nog niet gekozen. Publiceer en verspreid het project pas nadat die keuze is vastgelegd. Zie [NOTICE](NOTICE.md) voor meegeleverde bronnen.
+Light Panel valt onder de [MIT-licentie](LICENSE). Zie [NOTICE](NOTICE.md) voor meegeleverde bronnen van derden.
