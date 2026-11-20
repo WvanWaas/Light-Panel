@@ -11,3 +11,7 @@ Start met het dashboard in een gewone browser. De broncode in `android/` is een 
 Scherm-, screenshot- en LED-functies gebruiken apparaatspecifieke ondersteuning. De LED-code is gemaakt voor bepaalde Denver/Rockchip-fotolijsten met bestaande toegang tot de hardware. Een willekeurige Frameo-tablet biedt die toegang niet automatisch. Deze startversie root geen apparaat en installeert niets via ADB.
 
 Het app-ID is `app.lightpanel.launcher`, zodat dit een eigen app is. De bron is beschikbaar; een werkende build en hardwaregedrag moeten per eigen apparaat worden geverifieerd.
+
+## ADB, root en hardware
+
+Zie de [Frameo / Denver-handleiding](frameo-adb-root.md) voor de teruggevonden ADB-route, controle van bestaande root, installatie, hardwarebediening en herstel. De oorspronkelijke manier waarop root en de LED-bestandslezer beschikbaar kwamen is nog niet vastgesteld.

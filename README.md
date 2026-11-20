@@ -88,7 +88,7 @@ De standaard is alleen toegankelijk op deze computer. Voor apparaten op je eigen
 BIND_ADDRESS=0.0.0.0
 ```
 
-Herstart en open `http://IP-VAN-JE-SERVER:8089` op je apparaat. Gebruik eerst een gewone browser. Voor de optionele kioskbroncode zie [Android](docs/android.md).
+Herstart en open `http://IP-VAN-JE-SERVER:8089` op je apparaat. Gebruik eerst een gewone browser. Voor de optionele kioskbroncode zie [Android](docs/android.md). De [Frameo / Denver-handleiding](docs/frameo-adb-root.md) beschrijft ADB, controle van bestaande root, installatie en hardwarebediening.
 
 Het dashboard bevat bediening voor je huis en een beheerpagina zonder algemene aanmeldbeveiliging. Gebruik deze instelling daarom alleen op een vertrouwd lokaal netwerk; zet poort 8089 niet rechtstreeks open naar internet. De webhook heeft een eigen sleutel, maar die beveiligt niet de overige beheerfuncties. Bewaar tokens uitsluitend in je eigen `.env` en deel dat bestand niet.
 
