@@ -34,6 +34,10 @@ Open **http://localhost:8089**. Poort 8080 op de computer blijft beschikbaar voo
 
 Zie [de configuratiegids](docs/configuratie.md) voor sensoren, camera’s, energie en acties. Pas voorbeeldacties aan jouw apparaten aan voordat je ze gebruikt.
 
+## Je eigen versie maken met AI
+
+Gebruik de [AI-startgids](docs/AI-START.md) voor een kopieerbare prompt, uitleg over de code en een aanpak om Light Panel aan je eigen huis en scherm aan te passen.
+
 ## Foto’s
 
 Plaats je eigen foto’s in `photos/` en vernieuw de pagina. Je foto’s en lokale instellingen zijn uitgesloten van Git en van de Docker-image. Ze worden via lokale mappen aan de container gekoppeld.
