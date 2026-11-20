@@ -1,0 +1,4 @@
+# Merge packages into an existing homeassistant: block; do not duplicate it.
+# Copy the package files to /config/packages/.
+homeassistant:
+  packages: !include_dir_named packages

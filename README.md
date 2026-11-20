@@ -1,101 +1,102 @@
 # Light Panel
 
-**Je foto’s op de voorgrond. Je huis binnen handbereik.** Een persoonlijk dashboard voor een fotolijst, tablet of browser.
+**English** · [Nederlands](README.nl.md)
 
-![Light Panel-functieposter: twaalf onderwerpen van foto’s en energie tot klimaat, meldingen en fotolijstbediening](docs/functieposter.svg)
+**Your photos in focus. Your home within reach.** A personal dashboard for a photo frame, tablet or browser, with optional Home Assistant, Tibber and Victron integrations.
 
-## Alles wat Light Panel kan
+![Light Panel feature poster: photos, energy, climate, notifications and frame controls](docs/functieposter.svg)
 
-| | Onderdeel | Mogelijkheden met je eigen koppelingen |
+## What can it do?
+
+| | Area | Features with your own integrations |
 | --- | --- | --- |
-| 🖼️ | **Foto’s & thuis** | Automatische fotowissel, foto op volledig scherm, klok en datum met servertijd. |
-| ⚡ | **Energie & Tibber** | Actuele prijs, gekleurde uurbalken, kosten en teruglevering per dag, week, maand en jaar. Jouw betaalde gemiddelde naast de gemiddelde stroomprijs; morgenprijzen zodra beschikbaar. |
-| 🔋 | **Accu & zonnepanelen** | Lading, laad- of ontlaadvermogen, beschikbare kWh boven de reserve, laadgrafiek en ondergrens. Victron-planning en zonverwachting naast de stroomprijs; laadadvies met batterijruimte en verwachte zon. |
-| 🔌 | **Stroom per apparaat** | Huidig vermogen en beschikbaar dagtotaal per verbruiker. Van warmtepomp en witgoed tot kantoor en entertainment, met meetgrafieken. |
-| 🌡️ | **Klimaat & comfort** | Binnen- en buitentemperatuur, tapwater, CO₂, warmtepompvermogen en ventilatie. Gloed bij verwarmen of koelen; bediening van ondersteunde thermostaten, airco’s en ventilatiestanden. |
-| 🌦️ | **Weer, zon & maan** | Actueel weer, uur- en meerdaagse verwachting, bewegende weerweergave, maanstand en beschikbare zon- en maantijden. |
-| 📅 | **Agenda & aftellen** | Dag-, week- en maandagenda, kleuren en filters per agenda, afspraakdetails en aftellen naar bijzondere momenten. |
-| 🗂️ | **De meldingenbak** | Brandweer, ambulance, GRIP en een compacte vliegtuigenbalk. Nieuwste kaart bovenop, één voor één swipen of openen, filters en bewaarde historie. |
-| 🔔 | **Het huis meldt zich** | Grote meldingen met animaties, icoon of camerafoto. Deurbel, garage, apparaten klaar, wasgoedherinnering, CO₂, storingen, noorderlichtkans en goedkoop laden, afhankelijk van ingestelde bronnen. |
-| 💡 | **Lampen & entertainment** | Lampen via je eigen plattegrond, helderheid en kleur waar ondersteund. Media, volume en andere acties via jouw HA-services en scripts. |
-| 📷 | **Camera’s, nieuws & sites** | Camerafoto’s die tijdens een melding verversen, garagebeeld-in-beeld, nieuws van NOS en Tweakers en beschikbaarheidscontrole van eigen websites. Camerafoto’s zijn geen videostream. |
-| 🖥️ | **Fotolijst op afstand** | Beheerpagina, schermbeelden, grote berichten, geluid, webhooks en bediening van verbonden fotolijsten. Scherm en LED’s vereisen ondersteunde hardware en de passende Android-app. |
+| 🖼️ | Photos & home | Automatic photo rotation, full-screen photos and a clock based on server time. |
+| ⚡ | Energy & Tibber | Current prices, coloured hourly bars, costs, export revenue and net costs by day, week, month and year. Compare the average price with your paid average; tomorrow’s prices when available. |
+| 🔋 | Battery & solar | State of charge, charging/discharging power, usable energy above the reserve, minimum charge line, solar forecasts and Victron planning. Charging advice considers battery room and expected solar. |
+| 🔌 | Appliance energy | Current power, available daily totals and measurement charts for your configured devices. |
+| 🌡️ | Climate | Indoor/outdoor temperature, hot water, CO₂, heat pump power and ventilation. Heating/cooling glow; supported thermostat, air conditioning and fan controls. |
+| 🌦️ | Weather, sun & moon | Animated weather, hourly and daily forecasts, moon phase and available sun/moon times. |
+| 📅 | Calendar & countdowns | Day/week/month views, calendar colours and filters, appointment details and countdowns. |
+| 🗂️ | Notification feed | Fire/ambulance/GRIP alerts, a compact aircraft strip, stacked cards, swipe/dismiss, filters, details and history. Requires suitable sources. |
+| 🔔 | Home notifications | Large animated messages, icons and camera snapshots for doorbell, garage, appliances, ventilation, faults, aurora and charging advice, depending on configured sources. |
+| 💡 | Lights & media | Lights on your own floor plan, supported brightness/colour controls, media and your own HA service/script actions. |
+| 📷 | Cameras, news & websites | Refreshed camera snapshots, garage picture-in-picture, news and availability checks for your websites. Snapshots are not a video stream. |
+| 🖥️ | Remote frame controls | Screen, LEDs, screenshots, sound, full-screen messages and webhooks for connected hardware frames. Hardware controls require a compatible device and Android app. |
 
-**Laat het met je dag meelopen.** Je kunt via eigen Home Assistant-automatiseringen het scherm en de LED’s laten reageren op lampen, entertainment of aanwezigheid. Persoonlijke automations en apparaatinstellingen worden niet meegeleverd.
+Features depend on your own sensors, settings and services. The starter includes no personal photos, floor plan, branding, credentials or original private repository history. Integrations start empty; missing values are not populated with invented live data. Some interface text and technical routes still use Dutch or the name Frameo.
 
-[Open de functieposter afzonderlijk](docs/functieposter.svg) · [Maak je eigen versie met AI](docs/AI-START.md)
+## Quick start
 
-
-Deze startversie bevat geen persoonlijke foto’s, huisplattegrond, logo, accountgegevens of geschiedenis van het oorspronkelijke project. Koppelingen zijn optioneel en starten leeg. Zonder Home Assistant zie je nog geen eigen meetwaarden; dit is een startscherm, geen gevulde demo.
-
-## Beginnen in vijf minuten
-
-Installeer Docker met Docker Compose. Download deze repository als zip of kloon hem, open een terminal in de projectmap en voer uit:
+Install Docker with Docker Compose. Download or clone this repository, open its folder in a terminal, then run:
 
 ```sh
 cp .env.example .env
 docker compose up -d --build
 ```
 
-Open **http://localhost:8089**. Poort 8080 op de computer blijft beschikbaar voor andere toepassingen. Stoppen kan met `docker compose down`; lokale instellingen en meldingen blijven bewaard.
+Open **http://localhost:8089**. Stop with `docker compose down`; your local settings and history remain on disk.
 
-## Je eigen Home Assistant verbinden
+## Connect your Home Assistant
 
-1. Maak in Home Assistant via je gebruikersprofiel een langlevend toegangstoken.
-2. Vul in `.env` je eigen `HA_URL` en `HA_TOKEN` in. Zowel een lokaal adres als je eigen HTTPS-adres via Nabu Casa kan werken, mits bereikbaar vanaf de Docker-container.
-3. Kopieer de voorbeeldinstellingen:
+1. Create a long-lived access token in your HA user profile.
+2. Set your own `HA_URL` and `HA_TOKEN` in `.env`. Use an address reachable from the container; an HTTPS Nabu Casa address can also work.
+3. Copy the example:
 
    ```sh
    cp config.example.json config/settings.json
    ```
 
-4. Vervang de `example_*` entiteiten door je eigen entiteiten uit **Ontwikkelaarstools → Statussen**. Verwijder onderdelen die je niet hebt. Het hele configuratiebestand wordt ingelezen; dit is geen gedeeltelijke aanvulling op het voorbeeld.
-5. Herstart na een wijziging aan instellingen of `.env`:
+4. Replace the fictional `example_*` entities with your own IDs from HA’s developer tools. Remove optional sections you do not use. This is a complete configuration file, not a partial patch.
+5. Restart after changing `.env` or settings:
 
    ```sh
    docker compose up -d --force-recreate
    ```
 
-Zie [de configuratiegids](docs/configuratie.md) voor sensoren, camera’s, energie en acties. Pas voorbeeldacties aan jouw apparaten aan voordat je ze gebruikt.
+See the [configuration guide](docs/configuratie.md). Adapt example device actions before using them.
 
-## Je eigen versie maken met AI
+## Add your photos
 
-Gebruik de [AI-startgids](docs/AI-START.md) voor een kopieerbare prompt, uitleg over de code en een aanpak om Light Panel aan je eigen huis en scherm aan te passen.
+Put your own pictures in `photos/` and refresh the page. Photos, `.env`, local `config/settings.json`, runtime notification history and Android build/signing files are ignored by Git. Personal runtime data is also excluded from the Docker build context.
 
-## Foto’s
+## Build your own version with AI
 
-Plaats je eigen foto’s in `photos/` en vernieuw de pagina. Je foto’s en lokale instellingen zijn uitgesloten van Git en van de Docker-image. Ze worden via lokale mappen aan de container gekoppeld.
+The [AI starter guide](docs/AI-START.md) includes a copyable prompt, a map of the source code and suggestions for adapting the panel to your screen and devices without sharing secrets.
 
-## Wat kan het dashboard?
+On GitHub, choose **Use this template → Create a new repository** to start your own project.
 
-- Foto’s en een fotostand op volledig scherm.
-- Energiekaart met batterijpercentage, actueel verbruik, zon en stroomprijs.
-- Tibber-detail met dag, week, maand en jaar, kosten en teruglevering.
-- Optioneel Victron-planning en zonverwachting.
-- Klimaat, CO₂, tapwater, ventilatie en thermostaten.
-- Meldingen met historie, filters en animaties; camerafoto’s en garagebeeld in beeld.
-- Kalender, weer, nieuws en instelbare websitecontrole.
-- Fotolijstbediening, webhooks en grote meldingen. Geluid is instelbaar.
-- Optionele Android-kiosk met scherm- en LED-bediening op ondersteunde hardware.
+## Home Assistant webhooks and automations
 
-Wat zichtbaar werkt, hangt af van je eigen koppelingen en sensoren. Hardwarefuncties zijn niet beschikbaar in een gewone browser. De naam Frameo komt nog voor in technische routes en onderdelen voor compatibiliteit.
+The [HA package](home-assistant/README.md) includes scripts, a control dashboard and disabled example automations for doorbell, garage, appliances, alarm and screen schedules. Supply your own server address, webhook key and entity IDs. No personal HA configuration is included.
 
-## Op een tablet of fotolijst
+## Tablet, frame and automatic startup
 
-De standaard is alleen toegankelijk op deze computer. Voor apparaten op je eigen netwerk zet je in `.env`:
+By default, Docker listens only on this computer. For devices on your trusted LAN, set `BIND_ADDRESS=0.0.0.0` in `.env`, restart, then use `http://YOUR_SERVER:8089`.
 
-```dotenv
-BIND_ADDRESS=0.0.0.0
+Try a browser first. For native screen/LED controls, build the optional [Android app](docs/android.md). On a supported frame, **select Light Panel as the default Home app and choose Always**. The launcher and boot fallback then return to the dashboard after Android restarts; it retries while Wi-Fi or the server is unavailable. The device firmware must itself boot when power returns.
+
+The [Frameo/Denver guide](docs/frameo-adb-root.md) covers recovered ADB steps, checking existing root and the supported hardware interfaces. It does not claim to root an unmodified frame.
+
+The administration pages do not have general login protection. Keep the service on a trusted network and do not expose port 8089 directly to the internet. The webhook has its own key, which does not protect other management routes. Keep secrets in your own `.env` and HA `secrets.yaml`.
+
+## Development and checks
+
+After source changes: `docker compose up -d --build`. Open dashboard pages can reload after the backend restarts.
+
+Basic and webhook contract checks:
+
+```sh
+docker compose run --rm light-panel python -m unittest discover -s tests -v
 ```
 
-Herstart en open `http://IP-VAN-JE-SERVER:8089` op je apparaat. Gebruik eerst een gewone browser. Voor de optionele kioskbroncode zie [Android](docs/android.md). De [Frameo / Denver-handleiding](docs/frameo-adb-root.md) beschrijft ADB, controle van bestaande root, installatie en hardwarebediening.
+HA YAML/template checks additionally need `tests/requirements.txt` (PyYAML and Jinja2). Without these development dependencies, that test class is skipped. Run the focused tests in an environment with those installed:
 
-Het dashboard bevat bediening voor je huis en een beheerpagina zonder algemene aanmeldbeveiliging. Gebruik deze instelling daarom alleen op een vertrouwd lokaal netwerk; zet poort 8089 niet rechtstreeks open naar internet. De webhook heeft een eigen sleutel, maar die beveiligt niet de overige beheerfuncties. Bewaar tokens uitsluitend in je eigen `.env` en deel dat bestand niet.
+```sh
+python -m unittest discover -s tests -p test_home_assistant.py -v
+```
 
-## Updates en bijdragen
+These checks do not replace Home Assistant’s own configuration validation or a real power-cycle test on your frame.
 
-Na wijzigingen aan broncode: `docker compose up -d --build`. Bij een herstart van de backend kunnen geopende dashboardpagina’s automatisch vernieuwen.
+## License
 
-Light Panel is een zelfstandige template met een nieuwe Git-geschiedenis. Gebruik op GitHub **Use this template → Create a new repository** om je eigen versie te beginnen. Je eigen configuratie en foto’s blijven lokaal en worden niet meegecommit.
-
-Light Panel valt vanaf deze versie onder de [GNU GPLv3](LICENSE) (GPL-3.0-only). Bij verspreiding van aangepaste versies moet de bijbehorende broncode onder GPLv3 beschikbaar blijven. Zie [NOTICE](NOTICE.md) voor meegeleverde bronnen van derden.
+The current version uses [GNU GPLv3](LICENSE), GPL-3.0-only. Keep the corresponding source code and license obligations in mind when distributing changes. The first public version was MIT-licensed; see [NOTICE](NOTICE.md). Third-party files keep their own terms.

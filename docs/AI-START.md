@@ -1,125 +1,101 @@
-# Maak jouw eigen Light Panel met AI
+# Build your own Light Panel with AI
 
-Je kunt Light Panel als uitgangspunt gebruiken in bijvoorbeeld Codex, Claude Code, Cursor of een andere AI-code-editor. Laat de AI in jouw eigen kopie van het project werken. Je hebt geen toegang tot de oorspronkelijke installatie nodig.
+**English** · [Nederlands](AI-START.nl.md)
 
-## 1. Begin met je eigen project
+Use Light Panel as a starting point in Codex, Claude Code, Cursor or another AI coding editor. Work in your own copy; access to the original installation is not needed.
 
-Klik op GitHub op **Use this template → Create a new repository** en kies je eigen naam. Kloon jouw nieuwe repository en open die map in je AI-editor. Je kunt ook de broncode als zip downloaden.
+## Start with your own repository
 
-Start eerst de ongewijzigde versie volgens de [README](../README.md). Zo weet je of Docker en de basis werken voordat je het uiterlijk of koppelingen verandert. Zonder koppelingen zijn de meetwaarden leeg; dat is normaal.
+Choose **Use this template → Create a new repository** on GitHub, clone it and open the folder in your editor. Alternatively, download the source ZIP. First run the unmodified project using the [README](../README.md) so you know the Docker setup works. Without integrations, empty readings are expected.
 
-Gebruik voor eigen foto's `photos/`, voor koppelingen `.env` en voor je apparaten `config/settings.json`. Die bestanden horen lokaal te blijven en zijn uitgesloten van Git. Een privé-repository is verstandig wanneer je later eigen huisgegevens aan je project toevoegt.
+Keep photos in `photos/`, credentials in `.env` and device mappings in `config/settings.json`. They should remain local and are ignored by Git. Consider a private repository when adding your own household information.
 
-## 2. Vertel de AI wat jij wilt
-
-Kopieer deze prompt naar je AI-editor en vul de stukken tussen vierkante haken in:
+## Copy this prompt
 
 ```text
-Ik wil met deze Light Panel-repository mijn eigen thuisdashboard maken.
-Werk direct in deze projectmap. Lees eerst README.md, docs/configuratie.md,
-NOTICE.md en de bestaande code. Controleer eventuele AGENTS.md-instructies.
+Help me turn this Light Panel repository into my own home dashboard.
+Work directly in this project folder. First read README.md,
+docs/configuratie.md, NOTICE.md and the existing code. Check for AGENTS.md.
 
-Mijn wensen:
-- Scherm: [tablet/fotolijst/browser], resolutie [breedte × hoogte],
-  oriëntatie [staand/liggend], kijkafstand [ongeveer ... meter].
-- Stijl: [rustig/donker/licht], accentkleur [kleur], grote leesbare cijfers.
-- Hoofdscherm: [foto, energie, klimaat, agenda, ...].
-- Meldingen: [deurbel, garage, wasmachine, ...].
-- Bediening: [lampen, ventilatie, thermostaat, ...].
-- Koppelingen: [Home Assistant, Tibber, Victron, geen, ...].
-- Wat ik niet heb of niet wil: [...].
+My requirements:
+- Device: [tablet/frame/browser], resolution [width x height],
+  orientation [portrait/landscape], viewing distance [about ... metres].
+- Style: [dark/light/calm], accent colour [...], large readable numbers.
+- Home screen: [photos, energy, climate, calendar, ...].
+- Notifications: [doorbell, garage, washing machine, ...].
+- Controls: [lights, ventilation, thermostat, ...].
+- Integrations: [Home Assistant, Tibber, Victron, none, ...].
+- Things I do not have or want: [...].
 
-Maak eerst een kort voorstel op basis van de bestaande mogelijkheden.
-Vraag alleen om ontbrekende informatie die een wezenlijk verschil maakt.
-Maak daarna een kleine werkende eerste versie en controleer die in de browser.
-Werk vervolgens stapsgewijs verder.
+Give a short proposal based on the existing capabilities. Ask only for
+missing information that materially affects the result. Then build a small
+working version, check it in a browser and continue in manageable steps.
 
-Gebruik config/settings.json voor mijn entiteiten en .env voor geheime waarden.
-Vraag mij om tokens zelf lokaal in te vullen; laat mij ze niet in de chat plakken.
-Toon geen tokenwaarden in logs, screenshots, voorbeeldcode of commits.
-Lees geen .env of persoonlijke foto's als dat voor de wijziging niet nodig is.
-Houd config.json en config.example.json geschikt als lege/generieke start.
-Gebruik geen persoonlijke gegevens, afbeeldingen of logo's van de maker.
+Use config/settings.json for my entity mappings and .env for secrets.
+Ask me to enter tokens locally; do not ask me to paste secrets into chat.
+Never include tokens in logs, screenshots, examples or commits.
+Do not read .env or personal photos unless the task actually requires it.
+Keep config.json and config.example.json generic and suitable for sharing.
+Do not reuse the original owner's personal data, photos or branding.
 
-Laat bestaande functies werken, tenzij ik vraag ze te verwijderen.
-Behandel gegevens die ontbreken of een koppeling die uitvalt als een normale
-situatie. Verzin geen live waarden en presenteer voorbeelddata duidelijk als
-voorbeeld. Installeer of bedien geen echte apparaten zonder mijn opdracht.
+Preserve existing features unless I ask to remove them. Handle missing
+sensors and failed integrations gracefully. Do not invent live values;
+label demonstrations clearly. Do not install software on or control real
+devices without my instruction.
 
-Controleer de relevante wijzigingen. Rapporteer wat is aangepast, hoe ik het
-start, wat getest is en welke instellingen ik nog zelf moet invullen.
-Publiceer niets en wijzig geen Home Assistant-automations zonder mijn opdracht.
-Behoud GPLv3 en de licentievermeldingen van derden.
+Check relevant changes. Explain what changed, how to start it, what was
+verified and what I still need to configure. Do not publish anything or
+change HA automations without my instruction. Preserve GPLv3 and
+third-party license notices.
 ```
 
-Je kunt ditzelfde uitgangspunt ook gebruiken om een ander ontwerp te laten maken. Laat de AI dan expliciet aangeven welke onderdelen uit Light Panel worden hergebruikt en welke opnieuw worden gemaakt.
+You can request a different design too. Ask the AI to identify which existing parts it reuses and which it replaces.
 
-## 3. Geef bruikbare informatie, zonder geheimen
+## Give useful information, not secrets
 
-Een AI kan veel gerichter werken met een korte lijst van je entiteiten en hun eenheden. Bijvoorbeeld:
+Provide a short list of the entity IDs and units needed for your requested feature. The example configuration uses fictional `sensor.example_battery_soc` (%), `sensor.example_battery_power` (W), `sensor.example_house_power` (W), `sensor.example_solar_power` (W), `sensor.example_room_temperature` (°C), `sensor.example_co2` (ppm), `binary_sensor.example_garage_open` and `camera.example_frontdoor`.
 
-| Functie | Voorbeeld van een entiteit | Eenheid / betekenis |
-| --- | --- | --- |
-| Batterijlading | `sensor.example_battery_soc` | % |
-| Batterijvermogen | `sensor.example_battery_power` | W; positief betekent laden of ontladen? |
-| Huisverbruik | `sensor.example_house_power` | W |
-| Zonnepanelen | `sensor.example_solar_power` | W |
-| Stroomprijs | `sensor.example_electricity_price` | €/kWh of ct/kWh? |
-| Temperatuur | `sensor.example_room_temperature` | °C |
-| CO₂ | `sensor.example_co2` | ppm |
-| Garage | `binary_sensor.example_garage_open` | on = open? |
-| Camera | `camera.example_frontdoor` | Camerafoto beschikbaar in HA? |
+Explain whether positive battery power means charging or discharging, its capacity and minimum charge. Specify price units (€/kWh or ct/kWh), garage sensor states and whether fan numbers mean minutes or speed. For notifications, define the trigger, duration and dismissal behaviour.
 
-Dit zijn fictieve voorbeelden. Kopieer geen volledig HA-statusoverzicht: dat kan locaties, camerabeelden, URL's en andere persoonlijke gegevens bevatten. Deel alleen wat voor je gekozen functie nodig is. Controleer de gegevens ook voordat je ze naar een externe AI-dienst stuurt.
+Do not paste a full HA state dump: it may include locations, camera information and personal URLs. Share only the subset required, and review it before sending it to an external AI service.
 
-Vertel bij een batterij ook de capaciteit, minimumlading en het teken van het vermogen. Geef bij ventilatie aan of getallen minuten of snelheden zijn. Geef voor meldingen aan wanneer ze beginnen, hoe lang ze blijven en hoe je ze wegklikt.
+## Source map
 
-## 4. Waar vindt de AI de onderdelen?
-
-| Onderdeel | Begin hier |
+| Area | Starting point |
 | --- | --- |
-| Starten en Docker | `README.md`, `compose.yaml`, `Dockerfile` |
-| Instellingen en voorbeelden | `settings.py`, `config.json`, `config.example.json`, `.env.example` |
-| Backend en HA-verbinding | `app.py`, `sync.py`, `entity_filter.py` |
-| Hoofdscherm en opmaak | `static/index.html`, `static/app.js`, `static/style.css` |
-| Energie op het hoofdscherm | `static/home-energy.js`, `static/homehub.js` |
-| Tibber en Victron | `tibber_data.py`, `vrm_planning.py`, `static/tibber/` |
-| Meldingen en fotolijstbediening | `frameo_remote.py`, `static/frameo-message.js`, `static/frameo-admin.js` |
-| Meldingenfeed | `feed_events.py`, `live_ticker.py`, `static/ticker.js` |
-| Android-app | `android/`, `docs/android.md` |
+| Startup and Docker | `README.md`, `compose.yaml`, `Dockerfile` |
+| Settings | `settings.py`, `config.json`, `config.example.json`, `.env.example` |
+| Backend / HA | `app.py`, `sync.py`, `entity_filter.py` |
+| Main UI | `static/index.html`, `static/app.js`, `static/style.css` |
+| Home energy | `static/home-energy.js`, `static/homehub.js` |
+| Tibber / Victron | `tibber_data.py`, `vrm_planning.py`, `static/tibber/` |
+| Messages / controls | `frameo_remote.py`, `static/frameo-message.js`, `static/frameo-admin.js` |
+| Feed | `feed_events.py`, `live_ticker.py`, `static/ticker.js` |
+| HA examples | `home-assistant/README.md`, `home-assistant/packages/` |
+| Android / startup | `android/`, `docs/android.md` |
 
-Laat de AI voor een wijziging eerst de actuele code lezen; deze tabel is een wegwijzer, geen volledige technische specificatie. De naam Frameo blijft in een aantal routes en bestandsnamen staan voor compatibiliteit.
+This is a map, not a complete specification: have the AI inspect the current code. Frameo remains in several technical paths for compatibility.
 
-## 5. Werk in kleine stappen
+## Iterate in small steps
 
-Goede vervolgopdrachten zijn bijvoorbeeld:
+Useful follow-up prompts:
 
-- “Maak het hoofdscherm geschikt voor een staande tablet van 800 × 1280. Laat energie en klimaat leesbaar op drie meter afstand.”
-- “Ik heb geen thuisbatterij. Verberg de batterijweergave en geef huisverbruik meer ruimte.”
-- “Voeg een melding toe wanneer mijn CO₂-sensor vijf minuten boven 1.500 ppm staat. Wis de melding onder 900 ppm.”
-- “Maak een rustige voorbeeldstand met fictieve waarden, duidelijk als demo gemarkeerd.”
-- “Controleer de entiteiten die ik heb ingesteld. Verander geen HA-apparaten of automations.”
+- “Adapt the home screen to an 800 x 1280 portrait tablet. Keep energy and climate readable from three metres.”
+- “I have no home battery. Hide that area and emphasise house consumption.”
+- “Notify me after five minutes above 1,500 ppm CO₂, and clear the notification below 900 ppm.”
+- “Create a clearly labelled demo mode with fictional values.”
+- “Review my entity mappings without controlling devices or modifying automations.”
 
-Bewaar elke werkende stap in Git. Controleer vóór een commit welke bestanden meegaan. Een uitgesloten bestand dat ooit al in Git is gezet, verdwijnt niet automatisch door `.gitignore`.
+Commit working steps and inspect the file list before each commit. Adding a file to `.gitignore` does not remove a version that was already committed.
 
-## 6. Controleren en starten
+## Verify
 
-Na broncodewijzigingen:
+After source changes, run `docker compose up -d --build` and open `http://localhost:8089`. Check empty/missing-sensor states and your actual screen size. See the README for the basic, webhook and optional HA-template checks.
 
-```sh
-docker compose up -d --build
-```
+Screen/LED access is hardware-specific. Do not let an AI assume all tablets share the same root permissions or interfaces. For a dedicated frame, explicitly include the one-time default-HOME selection and reboot/power-cycle test.
 
-Open `http://localhost:8089`. Test ook de lege toestand, een ontbrekende sensor en het schermformaat van jouw apparaat. De meegeleverde startcontroles kun je draaien met:
+Keep management on a trusted LAN. General management pages have no login; a webhook key only protects the webhook. Ask separately for an appropriate authenticated remote-access design if needed.
 
-```sh
-docker compose run --rm light-panel python -m unittest discover -s tests -v
-```
+## License
 
-Scherm- en LED-bediening in de Android-app zijn hardwareafhankelijk. Laat een AI niet aannemen dat iedere Android-tablet dezelfde LED-interface of toegangsrechten heeft. Begin met de browserweergave.
-
-Gebruik het dashboard op een vertrouwd lokaal netwerk. De gewone beheerpagina's hebben geen algemene aanmeldbeveiliging; een webhook-sleutel beschermt alleen de webhook. Vraag apart om een passende veilige toegangsoplossing als je het van buiten je netwerk wilt gebruiken.
-
-## Licentie
-
-De huidige versie valt onder [GNU GPLv3](../LICENSE) (GPL-3.0-only). Houd bij verspreiding van wijzigingen rekening met de verplichtingen voor bijbehorende broncode en licentieteksten. De eerste openbare versie was MIT; zie [NOTICE](../NOTICE.md). AI gebruiken om de code aan te passen verandert de bestaande licentievoorwaarden niet.
+The current source uses [GPLv3](../LICENSE), GPL-3.0-only. Follow source-distribution and license obligations when sharing modifications. The initial public version was MIT; see [NOTICE](../NOTICE.md). AI-assisted editing does not remove existing license conditions.

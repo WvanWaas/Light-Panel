@@ -17,3 +17,6 @@ android/**/build/
 *.apk
 *.jks
 *.keystore
+
+# Actual HA secrets stay local; secrets.example.yaml remains shareable.
+secrets.yaml

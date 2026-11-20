@@ -121,6 +121,15 @@ public class MainActivity extends Activity {
         syncClockAsync();
     }
 
+    @Override protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        if (intent != null && intent.getBooleanExtra(BootReceiver.EXTRA_FROM_BOOT, false)) {
+            if (screen != null && screen.available()) setNativeScreen(true, ledGeneration, 0);
+            loadDashboard(); // One reload after an actual Android boot; never on a data refresh.
+        }
+    }
+
     private void syncClockAsync() {
         worker.execute(new Runnable() {
             @Override public void run() {

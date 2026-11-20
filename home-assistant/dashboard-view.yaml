@@ -1,0 +1,68 @@
+# Complete Lovelace view: paste into the YAML of a new dashboard view.
+type: sections
+max_columns: 3
+title: Light Panel
+path: light-panel
+icon: mdi:tablet-dashboard
+sections:
+  - type: grid
+    cards:
+      - type: heading
+        heading: Screen and display
+      - type: button
+        name: Screen on
+        icon: mdi:monitor
+        tap_action:
+          action: perform-action
+          perform_action: script.light_panel_screen_on
+      - type: button
+        name: Screen off
+        icon: mdi:monitor-off
+        tap_action:
+          action: perform-action
+          perform_action: script.light_panel_screen_off
+      - type: button
+        name: Photos
+        icon: mdi:image
+        tap_action:
+          action: perform-action
+          perform_action: script.light_panel_photo
+      - type: button
+        name: Dashboard
+        icon: mdi:view-dashboard
+        tap_action:
+          action: perform-action
+          perform_action: script.light_panel_dashboard
+      - type: button
+        name: Next photo
+        icon: mdi:image-arrow-right
+        tap_action:
+          action: perform-action
+          perform_action: script.light_panel_next_photo
+      - type: button
+        name: Refresh
+        icon: mdi:refresh
+        tap_action:
+          action: perform-action
+          perform_action: script.light_panel_reload
+  - type: grid
+    cards:
+      - type: heading
+        heading: Test messages
+      - type: button
+        name: Test message
+        icon: mdi:message-check-outline
+        tap_action:
+          action: perform-action
+          perform_action: script.light_panel_test
+      - type: button
+        name: Dismiss message
+        icon: mdi:close-box-outline
+        tap_action:
+          action: perform-action
+          perform_action: script.light_panel_message_clear
+      - type: markdown
+        content: >-
+          These buttons control all online hardware frames.
+          Pass a device ID to the scripts to target a single frame.
+          Example automations start disabled and need your own sensors.

@@ -1,68 +1,67 @@
-# Frameo / Denver: ADB, rootcontrole en Light Panel installeren
+# Frameo / Denver: ADB, existing root and installation
 
-Deze handleiding legt vast wat uit de projectcode, documentatie en eerdere tests kon worden gereconstrueerd. Hij helpt je een eigen fotolijst onderzoeken en Light Panel installeren. Er is geen universeel rootrecept voor alle Frameo-apparaten.
+**English** · [Nederlands](frameo-adb-root.nl.md)
 
-## Wat is daadwerkelijk teruggevonden?
+This guide records what could be reconstructed from earlier project sessions and the source code. It helps you inspect your own frame and install Light Panel. It is not a universal rooting procedure.
 
-| Onderdeel | Status |
+## What was recovered?
+
+| Item | Evidence / status |
 | --- | --- |
-| Onderzocht model | Denver PFF-1081; andere modellen kunnen afwijken |
-| Android | In de oorspronkelijke sessie uitgelezen als Android 6.0.1, API 23 |
-| CPU-architectuur | In die sessie uitgelezen als `armeabi-v7a` (32-bit ARM) |
-| ADB openen | Frameo Beta Program en ADB Access ingeschakeld |
-| Verbinding | USB werkte aanvankelijk niet op de Mac; later werkte ADB via Windows en daarna via het netwerk |
-| Root | Tijdens de verkenning werden `/system/xbin/su` en `daemonsu` opgemerkt; later werd `su` gebruikt voor opdrachten |
-| Root aanbrengen | Geen uitgevoerde exploit, Magisk-installatie, bootloader-unlock of root-flash teruggevonden |
-| Draadloze ADB | Poort 5555; persistente property besproken en verbinding na herstart gemeld |
-| LED-interface | De huidige APK schrijft naar `/sdcard/frameo_light.txt` |
-| Scherminterface | De huidige APK bedient `/sys/class/backlight/rk28_bl/brightness` |
+| Original model | Denver PFF-1081; other models may differ |
+| Android | Reported as Android 6.0.1, API 23 |
+| CPU | Reported as `armeabi-v7a`, 32-bit ARM |
+| ADB access | Frameo Beta Program and ADB Access enabled |
+| Connection | USB initially failed on macOS; ADB later worked through Windows and then over the network |
+| Root | `/system/xbin/su` and `daemonsu` were noticed during inspection; `su` was subsequently used |
+| Root installation | No completed exploit, Magisk installation, bootloader unlock or root-flashing procedure was recovered |
+| Wireless ADB | TCP port 5555; persistent settings discussed and a connection after reboot reported |
+| LED interface | The current APK writes to `/sdcard/frameo_light.txt` |
+| Screen interface | The current APK controls `/sys/class/backlight/rk28_bl/brightness` |
 
-De gevonden route gebruikt dus **bestaande roottoegang**. We kunnen niet vaststellen of die uit de fabrieksfirmware, een eerdere aanpassing of een andere herkomst kwam. De aanwezigheid van `su` op één exemplaar zegt niet dat jouw fotolijst ook geroot is. ADB inschakelen geeft op zichzelf geen rootrechten.
+The recovered route uses **existing root access**. Its original source—factory firmware, an earlier change or something else—is not established. Having `su` on one frame does not prove it exists on another. Enabling ADB does not grant root.
 
-De historische privégesprekken en apparaatgegevens worden niet meegeleverd; alleen deze algemene reconstructie en de openbare broncode.
+Private conversations, device addresses and logs are not distributed with this guide.
 
-## 1. Voorbereiden
+## 1. Prepare
 
-- Noteer het exacte model, Android-versie en firmwareversie van jouw fotolijst.
-- Installeer [Android SDK Platform-Tools](https://developer.android.com/tools/releases/platform-tools) op je computer.
-- Gebruik een USB-kabel die gegevens kan overdragen. Houd de normale voeding van de fotolijst aangesloten wanneer die afzonderlijk nodig is.
-- Bewaar toegang tot de bestaande launcher en Android-instellingen totdat Light Panel betrouwbaar werkt.
+Record your exact model, Android and firmware versions. Install [Android SDK Platform-Tools](https://developer.android.com/tools/releases/platform-tools). Use a USB data cable and retain the frame’s normal power supply where required. Keep access to Android settings and the original launcher until your replacement works reliably.
 
-De onderstaande voorbeelden gaan uit van één aangesloten apparaat. Gebruik bij meerdere apparaten `adb -s SERIENUMMER ...` of `adb -s FRAME_IP:5555 ...`, met jouw eigen serienummer of adres.
+Commands below assume one device. With several devices, use `adb -s SERIAL ...` or `adb -s FRAME_IP:5555 ...`, replacing those placeholders with your own values.
 
-## 2. ADB inschakelen
+## 2. Enable ADB
 
-De [officiële Frameo-instructie](https://support.frameo.com/hc/en-us/articles/6126183308434--How-to-Enable-ADB-on-Your-Frame) beschrijft deze route:
+The [official Frameo instructions](https://support.frameo.com/hc/en-us/articles/6126183308434--How-to-Enable-ADB-on-Your-Frame) describe:
 
-**Instellingen → Over / About → Beta Program aan → ADB Access aan.**
+**Settings → About → Beta Program on → ADB Access on.**
 
-Sluit daarna de datakabel aan en accepteer een eventuele autorisatievraag op de fotolijst. Controleer op je computer:
+Connect the data cable, approve any debugging prompt on the frame, then check:
 
 ```sh
 adb version
 adb devices -l
 ```
 
-| Uitkomst | Betekenis / vervolgstap |
+| Result | Next step |
 | --- | --- |
-| `device` | ADB is verbonden |
-| `unauthorized` | Controleer de autorisatievraag op de fotolijst |
-| `offline` | De verbinding bestaat, maar de sessie werkt niet goed; verbind opnieuw |
-| Geen apparaat | Controleer voeding, datakabel, poort, ADB-toggle en zo nodig de Windows-driver |
+| `device` | Connected |
+| `unauthorized` | Approve the authorization prompt on the frame |
+| `offline` | Reconnect and check the ADB session |
+| No device | Check power, data cable, port, ADB toggle and, on Windows, drivers |
 
-Op het onderzochte exemplaar werkte USB aanvankelijk niet op macOS. Later werd ADB via Windows gebruikt. Dat is een waarneming, geen bewijs dat alle PFF-1081's een Windows-computer vereisen. Bij Windows verwijst Frameo naar de [Google USB Driver](https://developer.android.com/studio/run/win-usb); welke driver jouw model nodig heeft, hangt van de hardware af.
+The original frame initially did not enumerate over USB on macOS; Windows was used later. This is an observation, not a requirement for every PFF-1081. Frameo points Windows users to the [Google USB Driver](https://developer.android.com/studio/run/win-usb), but the correct driver depends on the device.
 
-Op macOS kun je controleren of het apparaat überhaupt op de USB-bus verschijnt:
+On macOS, check whether USB detects it at all:
 
 ```sh
 ioreg -p IOUSB
 ```
 
-Geen vermelding op de USB-bus wijst op een probleem vóór de ADB-autorisatie. Zoek dan eerst verder naar kabel, aansluiting, voeding of de firmware-instelling.
+If the device is absent from the USB bus, solve that before diagnosing ADB authorization.
 
-## 3. Model en bestaande root controleren
+## 3. Inspect the model and existing root
 
-Deze opdrachten lezen gegevens; ze installeren geen root:
+These commands read information; they do not install root:
 
 ```sh
 adb shell getprop ro.product.model
@@ -74,23 +73,17 @@ adb shell which su
 adb shell su -c id
 ```
 
-Een ontbrekend `which`-commando bewijst niet dat `su` ontbreekt; de laatste opdracht is de belangrijke test. Bij werkende root verwacht je bij `su -c id` onder meer:
+A missing `which` command alone does not prove `su` is absent. Successful `su -c id` should include `uid=0(root)`. A normal ADB shell can report `uid=2000(shell)` while `su` still provides root.
 
-```text
-uid=0(root)
-```
+If `su` is missing, access is denied or no root UID appears, existing root has not been confirmed. The browser dashboard does not need root; native hardware controls and system clock correction do. Find a verified method for your exact device/firmware rather than guessing flash steps.
 
-Een gewone `adb shell id` kan `uid=2000(shell)` tonen terwijl `su -c id` wel root geeft. Dat zijn verschillende toegangsrechten.
+`adb root` is not a root installer. It restarts a suitable debug-build ADB daemon with elevated rights; production builds may refuse it. See [AOSP’s explanation](https://android.googlesource.com/platform/packages/modules/adb/+/refs/heads/main/docs/dev/root.md).
 
-**Geen `su`, geweigerde toegang of geen `uid=0`?** Dan is bestaande root niet bevestigd. De browserweergave heeft geen root nodig; de APK gebruikt root voor hardwarebediening en systeemklokcorrectie. Zoek voor aanvullende roottoegang een aantoonbaar passende methode voor jouw exacte model en firmware. Deze handleiding bevat geen gegokte flash- of bootloaderstappen.
+## 4. Optional wireless ADB
 
-`adb root` is ook geen algemene rootinstallatie. Het herstart op geschikte debug-builds de ADB-daemon met hogere rechten; normale productie-builds kunnen dit weigeren. Zie de [AOSP-uitleg](https://android.googlesource.com/platform/packages/modules/adb/+/refs/heads/main/docs/dev/root.md).
+ADB is for installation/diagnostics; normal Light Panel operation does not require an ongoing ADB connection.
 
-## 4. Optioneel: ADB via het netwerk
-
-Dit is voor installatie en diagnose. De normale Light Panel-werking heeft geen blijvende ADB-verbinding nodig.
-
-Begin met een werkende USB-verbinding en gebruik een vertrouwd netwerk. Vervang `FRAME_IP` door het adres van jouw fotolijst:
+Start with working USB on a trusted network. Replace `FRAME_IP` with your frame’s address:
 
 ```sh
 adb tcpip 5555
@@ -98,7 +91,7 @@ adb connect FRAME_IP:5555
 adb devices -l
 ```
 
-Controleer de eigenschappen op de fotolijst:
+Read the relevant properties:
 
 ```sh
 adb shell getprop service.adb.tcp.port
@@ -106,120 +99,104 @@ adb shell getprop persist.adb.tcp.port
 adb shell getprop init.svc.adbd
 ```
 
-`service.adb.tcp.port` betreft de lopende instelling. De persistente property is bedoeld om een herstart te overleven, maar de firmware moet die wel gebruiken. Alleen een reboot-test bevestigt dat.
+The service property describes the current setting. The persistent property is intended to survive reboot, but firmware must honour it. Only a reboot test confirms it.
 
-Als bestaande root werkt en je bewust draadloze ADB na een herstart wilt, was dit de gebruikte configuratieroute:
+If existing root works and you deliberately want wireless ADB after reboot, the recovered configuration route was:
 
 ```sh
 adb shell su -c 'setprop persist.adb.tcp.port 5555'
 adb shell getprop persist.adb.tcp.port
 ```
 
-Houd USB als terugvalmogelijkheid. Herstart op een geschikt moment en probeer daarna zonder opnieuw `adb tcpip` via USB uit te voeren:
+Keep USB as a fallback. Reboot at a suitable time and reconnect without first running `adb tcpip` over USB again:
 
 ```sh
 adb reboot
-# Wacht tot de fotolijst volledig is opgestart.
+# Wait for Android to finish starting.
 adb connect FRAME_IP:5555
 adb devices -l
 ```
 
-Android 6 gebruikt niet de moderne draadloze ADB-pairing van Android 11+. Beperk bereikbaarheid van poort 5555 tot je eigen beheercomputer en stel die poort niet beschikbaar aan internet of een gedeeld gastnetwerk. Een lokale `adb disconnect` schakelt de luisterende ADB-poort op de fotolijst niet uit. Voor tijdelijk netwerk-ADB kun je terug naar USB met `adb usb`; een ingestelde persistente poort moet afzonderlijk ongedaan worden gemaakt als je die niet meer wilt.
+Android 6 does not use modern Android 11+ wireless-debugging pairing. Restrict port 5555 to your own administration computer; do not expose it to the internet or a shared guest network. `adb disconnect` only disconnects your client; it does not disable the listener. `adb usb` returns a temporary TCP session to USB, but any configured persistent property must be reverted separately if you no longer want it.
 
-Bij een vastgelopen sessie kun je opnieuw verbinden:
+To reconnect a stuck session:
 
 ```sh
 adb disconnect FRAME_IP:5555
 adb connect FRAME_IP:5555
 ```
 
-Een gastnetwerk kan verbindingen tussen apparaten blokkeren. In de historische tests liepen daarnaast HA-ADB-opdrachten soms gelijktijdig of dubbel. Test bij problemen met één beheerclient en zonder concurrerende ADB-automatiseringen voordat je concludeert dat het apparaat maar één client ondersteunt.
+Guest-network isolation can block device-to-device traffic. Earlier HA-ADB tests also showed concurrent/duplicated commands. Test with one management client and without competing automations before assuming the device supports only one connection.
 
-## 5. Light Panel-APK bouwen en installeren
+## 5. Install the launcher
 
-Volg eerst [de Android-instructies](android.md) om de bron te bouwen en het dashboardadres in te stellen. De eigen server moet vanaf de fotolijst bereikbaar zijn. Het voorbeeldadres `lightpanel.local` maakt zelf geen DNS-naam aan.
+Follow [the Android build guide](android.md), set your own reachable dashboard URL and build the APK. The sample hostname does not create a DNS entry.
 
-Voer vanaf de projecthoofdmap uit, nadat de debug-APK is gebouwd:
+From the repository root:
 
 ```sh
 adb install -r android/app/build/outputs/apk/debug/app-debug.apk
 adb shell am start -n app.lightpanel.launcher/.MainActivity
 ```
 
-Test laden, bediening en herstel na een tijdelijke verbindingsfout voordat je de app als standaardlauncher kiest. Kies daarna via Android **Home / Startscherm** de app **Light Panel** en **Altijd**. Het instelscherm kun je zo openen:
+Test loading, controls and recovery from a temporary network failure. Then choose **Light Panel → Always** in Android’s Home settings:
 
 ```sh
 adb shell am start -a android.settings.HOME_SETTINGS
 ```
 
-De APK is geregistreerd als Android HOME-app. Het app-ID is `app.lightpanel.launcher`; de persoonlijke launcher uit het oorspronkelijke project gebruikt een ander app-ID.
+This one-time default-HOME choice is necessary for automatic startup. Version 0.2.0 adds a boot fallback; see [automatic startup](android.md#always-return-after-power-loss). Keep another working launcher available. A signing mismatch during an update is a reason to check the package/key, not to uninstall automatically and lose settings.
 
-Krijg je een fout over een andere handtekening? Verwijder de bestaande app dan niet automatisch: controleer eerst of je dezelfde app en ondertekensleutel gebruikt. Verwijderen wist de appinstellingen.
+## 6. ADB root and app root are different
 
-## 6. Root in ADB is niet hetzelfde als root voor de app
+The app opens `su -c /system/bin/sh` itself. A successful ADB root test does not prove that the installed app has the same permission. Approve Light Panel in your existing root manager if prompted, then test from the frame controls.
 
-De app opent zelf `su -c /system/bin/sh`. Een succesvolle `adb shell su -c id` bewijst niet dat de geïnstalleerde app dezelfde toestemming krijgt. Geef Light Panel, als jouw rootbeheer daarom vraagt, toegang en test daarna via de fotolijstbediening.
+The website passes fixed commands through a WebMessagePort restricted to the configured dashboard origin. Other websites do not get a general-purpose shell interface.
 
-De website gebruikt een beperkte WebMessagePort naar de APK voor vaste opdrachten. Alleen de ingestelde dashboard-origin krijgt die koppeling. Andere websites krijgen geen algemene shelltoegang via de launcher.
+## 7. Hardware, clock and screenshots
 
-## 7. LED's, scherm, klok en schermbeelden
-
-| Functie | Huidige implementatie |
+| Feature | Current implementation |
 | --- | --- |
-| LED-kleur | Root schrijft `<helderheid,rood,groen,blauw>` naar `/sdcard/frameo_light.txt`; ieder getal is 0–255 |
-| LED uit | Frame `<0,0,0,0>` |
-| Rood ademen | De APK berekent de animatie lokaal; ongeveer iedere 100 ms een update, cyclus van 3,2 seconden |
-| Scherm uit | Achtergrondverlichting op het onderzochte pad naar 0; Android en de netwerkverbinding blijven actief |
-| Scherm aan | Opgeslagen helderheid herstellen; een tik op het donkere scherm kan het weer aanzetten |
-| LED en scherm samen | De LED-controller onderdrukt de LED wanneer het scherm uit staat en bewaart de gewenste stand |
-| Klok | Referentietijd uit de dashboard-API, met terugval op NTP; root stelt de systeemklok in UTC in |
-| Schermbeeld | De app maakt op verzoek een afbeelding van de dashboard-WebView, geen opname van alle Android-apps |
+| LED colour | Root writes `<brightness,red,green,blue>` to `/sdcard/frameo_light.txt`; channels 0–255 |
+| LED off | `<0,0,0,0>` |
+| Red breathing | Generated locally in the app, roughly every 100 ms over a 3.2-second cycle |
+| Screen off | Set the supported backlight to zero; Android/network stay active |
+| Screen on | Restore saved brightness; touching the dark screen can wake it |
+| Screen/LED relationship | Screen-off suppresses LEDs while keeping the desired LED setting |
+| Clock | Reference time from the dashboard API, falling back to NTP; root sets UTC system time |
+| Screenshots | Requested image of the dashboard WebView, not the full Android screen or other apps |
 
-Het LED-bestand is een interface die op de oorspronkelijke fotolijst werd gebruikt. De bijbehorende firmware- of achtergrondlezer zit **niet** in Light Panel. Alleen dat bestand aanmaken levert op een willekeurige Android-tablet geen werkende LED's op. De herkomst en installatie van die lezer konden niet worden gereconstrueerd.
+The LED file is an interface used by the original frame. Its firmware/background reader is **not included** in Light Panel, and its installation could not be reconstructed. Creating that file on another Android tablet will not create working LEDs.
 
-Voor het scherm kun je eerst alleen controleren of het bekende pad bestaat:
+Read-only backlight checks:
 
 ```sh
 adb shell ls -l /sys/class/backlight/rk28_bl/brightness
 adb shell cat /sys/class/backlight/rk28_bl/brightness
 ```
 
-Als het pad ontbreekt, geldt deze hardwarebediening niet voor jouw model. Gebruik de appbediening om aan/uit te testen; de app bewaart en herstelt daarbij de helderheid.
+If that path is missing, this controller does not match your model. Use the app’s controls for on/off tests because it saves/restores brightness. The old `frameo_breathe.sh` is not needed by the current app. Do not run old HA-ADB LED automations and the app as competing controllers.
 
-Het oude shellscript `frameo_breathe.sh` is niet nodig voor de huidige animatie. Laat oude HA-ADB-scripts en de nieuwe APK niet tegelijk dezelfde LED aansturen.
+## 8. WebView and recovery
 
-## 8. WebView en herstel
-
-Bij het oorspronkelijke apparaat speelden fouten met de systeem-WebView en ARM32-bibliotheken. Een oude chat noemt uiteindelijk een geladen WebView 106. Dat is historische informatie, geen advies om die oude browserengine nu opnieuw te installeren.
-
-Controleer je eigen actieve provider met:
+The original device had WebView/ARM32 library problems. An old session eventually reported WebView 106; that is historical evidence, not advice to install an old browser engine today.
 
 ```sh
 adb shell dumpsys webviewupdate
-```
-
-Bij een crash kun je recente foutinformatie ophalen:
-
-```sh
 adb logcat -d -b crash -v time
 ```
 
-Controleer logs voordat je ze deelt: URL's en andere apparaatgegevens kunnen persoonlijk zijn. Deze handleiding overschrijft geen systeem-WebView, wijzigt geen `/system`-bestanden en bevat geen firmware-image.
+Review logs for personal URLs/data before sharing them. This guide does not replace a system WebView, modify `/system`, or include a firmware image.
 
-Kom je niet meer bij de Android-instellingen, probeer via een werkende ADB-verbinding:
+To return to Android settings or HOME through working ADB:
 
 ```sh
 adb shell am start -a android.settings.SETTINGS
 adb shell input keyevent 3
 ```
 
-De tweede opdracht gaat naar HOME. Welke app daar opent, hangt af van de ingestelde standaardlauncher. Bewaar een werkende alternatieve launcher totdat Light Panel stabiel draait.
+The HOME key opens whichever launcher is currently the default.
 
-## Wat ontbreekt nog?
+## Still unknown
 
-- De oorspronkelijke herkomst of installatie van `su` en `daemonsu`.
-- Een bevestigde rootprocedure voor een niet-geroot exemplaar van dezelfde firmware.
-- De herkomst van de LED-bestandslezer op de fotolijst.
-- Een volledige, gecontroleerde firmware-back-up en herstelprocedure voor elk ondersteund model.
-
-MaskROM, testpunten en het vervangen van systeemonderdelen kwamen als mogelijkheden langs, maar zijn niet als uitgevoerde succesvolle rootmethode teruggevonden. Daarom staan ze hier niet als installatie-instructie.
+The original installation/source of `su` and `daemonsu`, a verified root procedure for an unrooted matching frame, the vendor LED reader’s origin and a complete model-specific firmware recovery procedure are still unconfirmed. MaskROM/testpoints and system replacement were discussed as possibilities, but not recovered as a successfully executed rooting method, so they are not installation steps here.

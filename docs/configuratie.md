@@ -1,67 +1,71 @@
-# Configuratie
+# Configuration
 
-Alle gegevens hieronder zijn voorbeelden. `.env.example` bevat geen werkende toegangssleutels. `config.example.json` bevat geen echte apparaten.
+**English** · [Nederlands](configuratie.nl.md)
 
-## Bestanden
+The examples contain fictional entities and no working credentials. Copy `config.example.json` to `config/settings.json` and replace the values with your own. The local file completely replaces the empty `config.json` starter configuration.
 
-| Bestand | Doel |
+## Files
+
+| File | Purpose |
 | --- | --- |
-| `.env` | Lokale URL’s en geheime tokens; niet in Git |
-| `config/settings.json` | Jouw sensoren, camera’s en acties; niet in Git |
-| `config.json` | Lege standaard als er nog geen lokale instellingen zijn |
-| `photos/` | Jouw foto’s; niet in Git |
-| `notification-history/` | Lokale meldingenhistorie en eventueel gegenereerde webhook-sleutel |
+| `.env` | Local URLs and secret tokens; excluded from Git |
+| `config/settings.json` | Your entities, cameras and actions; excluded from Git |
+| `config.json` | Empty fallback configuration |
+| `photos/` | Your photos; excluded from Git |
+| `notification-history/` | Local notification history and, if generated, webhook key |
 
 ## Home Assistant
 
-`HA_URL` is het basisadres zonder `/api`, bijvoorbeeld je eigen lokale HA-adres. `HA_TOKEN` bevat het langlevende token, zonder `Bearer` ervoor. Het dashboard ontvangt statuswijzigingen via WebSocket en probeert bij verbindingsverlies opnieuw te verbinden.
+`HA_URL` is the reachable base URL without `/api`. `HA_TOKEN` is the long-lived token without a `Bearer` prefix. The backend receives changes through a WebSocket and reconnects after a failure. `localhost` inside Docker is the container itself, not your HA server.
 
-Kies entiteiten uit jouw Home Assistant en vervang de voorbeelden in `config/settings.json`:
-
-| Configuratiesleutel | Verwachte bron |
+| Setting | Source |
 | --- | --- |
-| `battery` | Batterijlading in procent |
-| `battery_power` | Batterijvermogen in W; controleer het teken |
-| `battery_charge_positive` | `true` als positief vermogen laden betekent |
-| `power` / `dashboard.house_power` | Huisverbruik in W |
-| `solar` | Huidige zonneproductie in W |
-| `energy.Stroomprijs` | Sensor voor stroomprijs; controleer de eenheid |
-| `weather` | Je HA-weersentiteit |
-| `dashboard.indoor_temperature` | Binnentemperatuur in °C |
-| `dashboard.indoor_co2` | CO₂ in ppm |
-| `dashboard.hot_water_temperature` | Tapwatertemperatuur in °C |
-| `dashboard.heat_pump_power` | Warmtepompvermogen in W |
-| `notifications.garage_entity` | Open/dicht-sensor van je garagedeur |
-| `cameras` | Namen gekoppeld aan HA-camera-entiteiten |
-| `thermostats` | Namen gekoppeld aan HA-climate-entiteiten |
-| `calendar_ids` | Lijst met jouw kalenderentiteiten |
-| `websites` | Lijst met eigen domeinen zonder `https://` |
+| `battery` | Battery state of charge (%) |
+| `battery_power` | Battery power (W); verify the sign |
+| `battery_charge_positive` | `true` if positive power means charging |
+| `power` / `dashboard.house_power` | House consumption (W) |
+| `solar` | Current solar production (W) |
+| `energy.Stroomprijs` | Electricity price; verify €/kWh versus ct/kWh |
+| `weather` | Your HA weather entity |
+| `dashboard.indoor_temperature` | Indoor temperature (°C) |
+| `dashboard.indoor_co2` | CO₂ (ppm) |
+| `dashboard.hot_water_temperature` | Hot water (°C) |
+| `dashboard.heat_pump_power` | Heat pump power (W) |
+| `notifications.garage_entity` | Garage door open/closed sensor |
+| `cameras` | Display names mapped to HA camera entities |
+| `thermostats` | Display names mapped to HA climate entities |
+| `calendar_ids` | Your HA calendar entity IDs |
+| `websites` | Your domains without `https://` |
 
-Laat optionele lijsten leeg en verwijder onbekende optionele entiteiten. Een niet-ingestelde garage geeft geen garagemelding. Een ingestelde maar onbereikbare sensor kan wel een onbekende status tonen.
+Keep unused lists empty and remove optional entities you do not have. An unconfigured garage does not produce a garage warning; a configured but unavailable sensor can show an unknown state.
 
-Voor batterijruimte gebruikt `feed_notifications.battery_capacity_kwh` jouw werkelijke capaciteit. Er is geen persoonlijke batterijcapaciteit vooraf ingevuld. `feed_notifications.battery_min_soc_entities` is een lijst van jouw HA-sensoren voor de minimumlading in procent. Een ondergrens moet ook via je eigen configuratie/sensoren beschikbaar zijn; er wordt geen kWh-reserve verzonnen zonder benodigde meetwaarden.
+Set `feed_notifications.battery_capacity_kwh` to your own real battery capacity. `feed_notifications.battery_min_soc_entities` is a list of sensors reporting the minimum allowed charge in percent. Available energy above the reserve is not invented without the required values.
 
-De voorbeeldventilatie gebruikt `fan.set_preset_mode` met `timer1`, `timer2`, `timer3`. Alleen apparaten met deze standen ondersteunen dat. Vervang deze acties door passende services of je eigen HA-scripts. Er worden geen scripts in Home Assistant geïnstalleerd vanuit deze startversie.
+The fan examples use `fan.set_preset_mode` with `timer1`, `timer2` and `timer3`. These are device-specific examples, not standard presets for every fan. Replace them with your own supported services or scripts.
 
-## Tibber en Victron
+## Tibber, Victron and solar forecasts
 
-Vul voor Tibber `TIBBER_TOKEN` in `.env` in. Zonder token blijven persoonlijke Tibbergegevens leeg. De detailpagina staat op `/tibber`.
+Set `TIBBER_TOKEN` in `.env` for personal Tibber data. The detail page is `/tibber`. Without a token, personal data remains empty.
 
-Voor Victron gebruik je je eigen `VRM_SITE_ID` en `VRM_TOKEN`. Beschikbare planning en meetwaarden verschillen per installatie en VRM-configuratie. Deze koppeling is bedoeld om gegevens te lezen, niet om je ESS-instellingen te veranderen.
+For Victron use your own `VRM_SITE_ID` and `VRM_TOKEN`. Available planning and readings depend on your installation and VRM configuration. This integration reads data; it is not intended to change your ESS configuration.
 
-Zonverwachtingen onder `solar_forecast` verwijzen naar je eigen HA-sensoren. Controleer eenheden en verwachte intervallen voordat je ze vergelijkt met werkelijk opgewekte energie.
+The `solar_forecast` fields refer to your own HA sensors. Check their units and periods before comparing forecasts with measurements.
 
-## Meldingen en bediening
+## Notifications, webhooks and devices
 
-Open `/beheer/fotolijst` voor aangesloten fotolijsten, scherm- en LED-bediening, geluid en de webhook. De daadwerkelijke mogelijkheden hangen af van de geïnstalleerde Android-app. Webhookopdrachten werken met de sleutel onder Webhook; deel die niet.
+Open `/beheer/fotolijst` for online frames, native screen/LED controls, sound and the webhook URL/key. Capabilities depend on the Android app and hardware.
 
-De beheerpagina genereert zo nodig een lokale sleutel. Je kunt ook zelf `FRAMEO_WEBHOOK_TOKEN` in `.env` instellen. In Home Assistant hoort de autorisatie als `Bearer JOUW_SLEUTEL` in een eigen secret. Je kunt meldingen met een grote afbeelding of camera gebruiken; er wordt geen HA-automation uit het privéproject meegeleverd.
+The server generates a local webhook key if none was configured. Alternatively, set `FRAMEO_WEBHOOK_TOKEN` in `.env` (at least 32 characters). HA uses `Bearer YOUR_KEY` in its own `secrets.yaml`; this is a separate key from `HA_TOKEN`.
 
-## Problemen oplossen
+Use the [generic HA package](../home-assistant/README.md) for scripts, a control view and disabled example automations. No private automation is copied or installed automatically.
 
-- Geen waarden: controleer HA-adres, token en exacte entiteit-ID’s.
-- `localhost` bij `HA_URL` verwijst binnen Docker naar de container zelf. Gebruik een bereikbaar HA-adres.
-- Poort bezet: wijzig `PORT` in `.env` en herstart.
-- Logs bekijken: `docker compose logs --tail=100 light-panel`. Deel geen geheime waarden uit je configuratie.
-- Geen camera: controleer of HA zelf een camerabeeld geeft en of de naam in `cameras` klopt.
-- Na configuratiewijziging: herstart de container; JSON moet geldig zijn.
+Camera names in webhook messages are configuration aliases, not `camera.*` entity IDs. For example, the supplied configuration uses `Voordeur`; map that alias to your own camera, or choose your own alias and use it consistently.
+
+## Troubleshooting
+
+- Missing readings: check URL, token and exact entity IDs.
+- Port already in use: change `PORT` in `.env` and restart.
+- After editing configuration: check JSON syntax and restart the container.
+- Camera missing: first check the camera in HA, then the alias mapping.
+- Logs: `docker compose logs --tail=100 light-panel`. Check for personal values before sharing logs.
+- Restart after environment/settings changes: `docker compose up -d --force-recreate`.

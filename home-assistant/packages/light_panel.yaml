@@ -1,0 +1,264 @@
+# Light Panel webhook package. Configure both secrets and restart HA.
+# No automatic actions in this base package; examples are separate.
+rest_command:
+  light_panel_webhook:
+    url: !secret light_panel_webhook_url
+    method: POST
+    headers:
+      Authorization: !secret light_panel_webhook_authorization
+    content_type: "application/json"
+    timeout: 30
+    payload: "{{ command | to_json }}"
+
+script:
+  light_panel_command:
+    alias: "Light Panel · command"
+    description: "Send a fixed command; omit device to target all online hardware frames."
+    mode: queued
+    max: 20
+    fields:
+      command:
+        name: Command
+        required: true
+        selector:
+          object: {}
+      device:
+        name: Frame ID (empty = all hardware frames)
+        selector:
+          text: {}
+    sequence:
+      - action: rest_command.light_panel_webhook
+        data:
+          command: >-
+            {{ command if (device | default('') | trim) == ''
+               else dict(command, device=device | trim) }}
+        response_variable: light_panel_response
+      - if:
+          - condition: template
+            value_template: "{{ light_panel_response.status | default(0) | int != 200 }}"
+        then:
+          - stop: >-
+              Light Panel not confirmed (HTTP {{ light_panel_response.status | default(0) }}).
+              Check the URL, key, frame connection and APK version.
+            error: true
+
+  light_panel_message:
+    alias: "Light Panel · full-screen message"
+    description: "Large message with an icon, optional configured camera and adjustable duration."
+    mode: queued
+    max: 20
+    fields:
+      title:
+        name: Title
+        default: Light Panel
+        selector:
+          text: {}
+      text:
+        name: Text
+        selector:
+          text:
+            multiline: true
+      icon:
+        name: Icon
+        default: info
+        selector:
+          select:
+            options:
+              - info
+              - check
+              - warning
+              - doorbell
+              - garage
+              - washing-machine
+              - dishwasher
+              - dryer
+              - fan
+              - fan-off
+              - airco
+              - airco-off
+              - lock
+              - unlock
+              - battery
+              - charging
+              - thermometer
+              - trash
+              - package
+              - car
+              - bell
+              - door
+      color:
+        name: Colour (hex)
+        default: "#338cc7"
+        selector:
+          text: {}
+      duration:
+        name: Duration (0 = until dismissed or replaced)
+        default: 30
+        selector:
+          number:
+            min: 0
+            max: 3600
+            step: 1
+            unit_of_measurement: s
+            mode: box
+      wake:
+        name: Wake the screen
+        default: true
+        selector:
+          boolean: {}
+      camera:
+        name: Light Panel camera alias (not an HA entity)
+        selector:
+          text: {}
+      camera_crop:
+        name: Camera crop
+        default: full
+        selector:
+          select:
+            options:
+              - full
+              - left
+      badge:
+        name: Short badge (maximum 24 characters)
+        selector:
+          text: {}
+      device:
+        name: Frame ID (empty = all hardware frames)
+        selector:
+          text: {}
+    sequence:
+      - action: script.light_panel_command
+        data:
+          device: "{{ device | default('') }}"
+          command: >-
+            {{ dict(action='message', title=title | default('Light Panel'),
+                    text=text | default(''), icon=icon | default('info'),
+                    color=color | default('#338cc7'), duration=duration | default(30) | int,
+                    wake=wake | default(true) | bool, camera=camera | default(''),
+                    camera_crop=camera_crop | default('full'), badge=badge | default('')) }}
+
+  light_panel_test:
+    alias: "Light Panel · test message"
+    icon: mdi:message-check-outline
+    mode: single
+    sequence:
+      - action: script.light_panel_message
+        data:
+          title: Light Panel is connected
+          text: This message was sent through Home Assistant and the webhook.
+          icon: check
+          color: "#20a882"
+          duration: 15
+          wake: true
+
+  light_panel_screen_on:
+    alias: "Light Panel · screen and LEDs on"
+    mode: queued
+    max: 10
+    fields:
+      device:
+        name: Frame ID (empty = all hardware frames)
+        selector:
+          text: {}
+    sequence:
+      - action: script.light_panel_command
+        data:
+          device: "{{ device | default('') }}"
+          command:
+            action: screen_on
+
+  light_panel_screen_off:
+    alias: "Light Panel · screen and LEDs off"
+    mode: queued
+    max: 10
+    fields:
+      device:
+        name: Frame ID (empty = all hardware frames)
+        selector:
+          text: {}
+    sequence:
+      - action: script.light_panel_command
+        data:
+          device: "{{ device | default('') }}"
+          command:
+            action: screen_off
+
+  light_panel_photo:
+    alias: "Light Panel · photo mode"
+    mode: queued
+    max: 10
+    fields:
+      device:
+        name: Frame ID (empty = all hardware frames)
+        selector:
+          text: {}
+    sequence:
+      - action: script.light_panel_command
+        data:
+          device: "{{ device | default('') }}"
+          command:
+            action: photo
+
+  light_panel_dashboard:
+    alias: "Light Panel · dashboard"
+    mode: queued
+    max: 10
+    fields:
+      device:
+        name: Frame ID (empty = all hardware frames)
+        selector:
+          text: {}
+    sequence:
+      - action: script.light_panel_command
+        data:
+          device: "{{ device | default('') }}"
+          command:
+            action: dashboard
+
+  light_panel_next_photo:
+    alias: "Light Panel · next photo"
+    mode: queued
+    max: 10
+    fields:
+      device:
+        name: Frame ID (empty = all hardware frames)
+        selector:
+          text: {}
+    sequence:
+      - action: script.light_panel_command
+        data:
+          device: "{{ device | default('') }}"
+          command:
+            action: next_photo
+
+  light_panel_reload:
+    alias: "Light Panel · reload page"
+    mode: queued
+    max: 10
+    fields:
+      device:
+        name: Frame ID (empty = all hardware frames)
+        selector:
+          text: {}
+    sequence:
+      - action: script.light_panel_command
+        data:
+          device: "{{ device | default('') }}"
+          command:
+            action: reload
+
+  light_panel_message_clear:
+    alias: "Light Panel · full-screen message sluiten"
+    mode: queued
+    max: 10
+    fields:
+      device:
+        name: Frame ID (empty = all hardware frames)
+        selector:
+          text: {}
+    sequence:
+      - action: script.light_panel_command
+        data:
+          device: "{{ device | default('') }}"
+          command:
+            action: message_clear

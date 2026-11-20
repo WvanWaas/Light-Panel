@@ -1,9 +1,13 @@
-# Herkomst en licentie
+# Origin and licensing
 
-Light Panel is een opgeschoonde zelfstandige startversie van een persoonlijk dashboard. De oude Git-geschiedenis, persoonlijke media en configuratie zijn niet meegeleverd.
+**English** · [Nederlands](NOTICE.nl.md)
 
-Copyright (c) 2026 Wessel van Waas. Light Panel wordt vanaf deze versie aangeboden onder GNU GPL versie 3 (GPL-3.0-only); zie `LICENSE`.
+Light Panel is a clean, independent starter extracted from a personal dashboard. The old private repository history, personal media and configuration are not included.
 
-De eerste openbare versie, voor de GPLv3-licentiewijziging, is eerder onder MIT uitgebracht. Die eerdere toestemming blijft voor die versie bestaan; de wijziging naar GPLv3 geldt vanaf de licentiewijziging. Aanwezige bestanden van derden behouden hun eigen voorwaarden. Zie onder meer `static/flags/LICENSE` en `static/flags/SOURCE.md`. De keuze van een projectlicentie wijzigt voorwaarden van derden niet.
+Copyright (c) 2026 Wessel van Waas. The current version is provided under GNU GPL version 3 (GPL-3.0-only); see `LICENSE`.
 
-Dit project is geen officieel product van Frameo, Tibber, Victron of Home Assistant. Merknamen worden gebruikt om ondersteunde koppelingen of hardware aan te duiden.
+The initial public version, before the GPLv3 license change, was released under MIT. That earlier permission remains available for that version; the GPLv3 change applies from the licensing change onward.
+
+Third-party files retain their own terms. See `static/flags/LICENSE` and `static/flags/SOURCE.md`. Choosing a project license does not change third-party licensing.
+
+This is not an official Frameo, Tibber, Victron or Home Assistant product. Those names identify integrations or compatible hardware.

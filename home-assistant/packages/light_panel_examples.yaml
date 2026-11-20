@@ -1,0 +1,129 @@
+# EXAMPLES: replace example_* and enable only the automations you want.
+# initial_state: false disables these examples on every HA restart.
+# Remove that line from an example to keep it enabled across restarts.
+automation:
+  - id: light_panel_example_doorbell
+    alias: "Light Panel · example doorbell"
+    initial_state: false
+    mode: single
+    triggers:
+      - trigger: state
+        entity_id: binary_sensor.example_doorbell
+        from: "off"
+        to: "on"
+    actions:
+      - action: script.light_panel_message
+        data:
+          title: Someone is at the door
+          text: The doorbell has been pressed.
+          icon: doorbell
+          color: "#338cc7"
+          camera: Voordeur
+          duration: 30
+          wake: true
+
+  - id: light_panel_example_garage
+    alias: "Light Panel · example garage open"
+    initial_state: false
+    mode: single
+    triggers:
+      - trigger: state
+        entity_id: binary_sensor.example_garage_open
+        from: "off"
+        to: "on"
+    actions:
+      - action: script.light_panel_message
+        data:
+          title: Garage door open
+          text: Please check the garage door.
+          icon: garage
+          color: "#d94d45"
+          camera: Garagedeur
+          duration: 30
+          wake: true
+
+  - id: light_panel_example_washer
+    alias: "Light Panel · example washer finished"
+    initial_state: false
+    mode: single
+    triggers:
+      - trigger: state
+        entity_id: binary_sensor.example_washer_running
+        from: "on"
+        to: "off"
+        for: "00:02:00"
+    actions:
+      - action: script.light_panel_message
+        data:
+          title: Washing machine finished
+          text: The laundry is ready.
+          icon: washing-machine
+          color: "#338cc7"
+          duration: 30
+          wake: true
+
+  - id: light_panel_example_dishwasher
+    alias: "Light Panel · example dishwasher finished"
+    initial_state: false
+    mode: single
+    triggers:
+      - trigger: state
+        entity_id: binary_sensor.example_dishwasher_running
+        from: "on"
+        to: "off"
+        for: "00:02:00"
+    actions:
+      - action: script.light_panel_message
+        data:
+          title: Dishwasher finished
+          text: The dishes are clean.
+          icon: dishwasher
+          color: "#20a882"
+          duration: 30
+          wake: true
+
+  - id: light_panel_example_alarm
+    alias: "Light Panel · example alarm state"
+    initial_state: false
+    mode: queued
+    triggers:
+      - trigger: state
+        entity_id: alarm_control_panel.example_home
+        to:
+          - armed_away
+          - armed_home
+          - disarmed
+    conditions:
+      - condition: template
+        value_template: >-
+          {{ trigger.from_state is not none and
+             trigger.from_state.state not in ['unknown', 'unavailable'] and
+             trigger.from_state.state != trigger.to_state.state }}
+    actions:
+      - action: script.light_panel_message
+        data:
+          title: "{{ 'Alarm disarmed' if trigger.to_state.state == 'disarmed' else 'Alarm armed' }}"
+          icon: "{{ 'unlock' if trigger.to_state.state == 'disarmed' else 'lock' }}"
+          color: "{{ '#20a882' if trigger.to_state.state == 'disarmed' else '#d94d45' }}"
+          duration: 10
+          wake: true
+
+  - id: light_panel_example_evening
+    alias: "Light Panel · example evening screen off"
+    initial_state: false
+    mode: single
+    triggers:
+      - trigger: time
+        at: "22:00:00"
+    actions:
+      - action: script.light_panel_screen_off
+
+  - id: light_panel_example_morning
+    alias: "Light Panel · example morning screen on"
+    initial_state: false
+    mode: single
+    triggers:
+      - trigger: time
+        at: "08:00:00"
+    actions:
+      - action: script.light_panel_screen_on
